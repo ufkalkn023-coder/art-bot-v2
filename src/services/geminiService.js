@@ -217,3 +217,37 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
       return null;
    }
 }
+
+export async function generateEvolutionPost(theme, artworks) {
+   if (!model) return null;
+
+   const artworksList = artworks.map((a, i) => `${i + 1}. "${a.title}" by ${a.artist} (${a.date})`).join('\n');
+
+   const prompt = `
+     Create a fascinating Twitter thread (or long post) about the "Evolution of ${theme} in Art".
+     
+     I have selected these ${artworks.length} artworks:
+     ${artworksList}
+     
+     Write a cohesive narrative that explains how the depiction of ${theme} has changed over time, referencing these specific pieces.
+     
+     Structure:
+     - **Title**: Catchy title with emojis
+     - **Intro**: Brief set up of the theme.
+     - **The Journey**: Walk through the timeline, grouping the artworks if needed, highlighting stylistic changes (e.g. from realism to abstraction).
+     - **Conclusion**: A thought on what this evolution tells us.
+     
+     Tone: Educational, storytelling, engaging.
+     
+     Output ONLY the text.
+     `;
+
+   try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Evolution Post Error:", error);
+      return null;
+   }
+}
