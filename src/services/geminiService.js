@@ -3,7 +3,7 @@ import { CONFIG } from '../config.js';
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(CONFIG.GEMINI.API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
 export async function generateArtContent(artwork, imageUrl) {
    if (!model) return "Error: Gemini model not initialized.";
@@ -24,9 +24,9 @@ export async function generateArtContent(artwork, imageUrl) {
     5. **Historical Context**: Place it in the timeline of art history. Why does it matter?
     6. **SEO Keywords**: Naturally weave in keywords like "Art History", "Masterpiece", "${artwork.artist}", "${artwork.movement}", "Oil Painting", etc.
     
-    Tone: Enthusiastic, authoritative, storytelling, slightly informal but educational.
+    Tone: Professional, authoritative, storytelling, educational. Write like a museum curator or art historian.
     
-    Output ONLY the text. Use emojis to break up sections.
+    Output ONLY the text. Do NOT use emojis or markdown symbols like ###. You may use **bold** for section titles only. Use plain text with clear paragraph breaks.
     `;
 
    try {
