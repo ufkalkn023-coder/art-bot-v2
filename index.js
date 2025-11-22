@@ -141,7 +141,62 @@ async function runBot() {
             }
         }
 
-        // 6. Standard Flow: Fetch Artwork
+        // 8. Forgotten Artists Spotlight (Every Monday + 15% random)
+        const { shouldRunForgottenArtistSpotlight, getRandomForgottenArtist } = await import('./src/services/forgottenArtistsService.js');
+        const { generateForgottenArtistSpotlight } = await import('./src/services/geminiService.js');
+
+        const isMonday = shouldRunForgottenArtistSpotlight();
+        const randomSpotlight = Math.random() < 0.15;
+
+        if (isMonday || randomSpotlight) {
+            logInfo("🌟 Triggering Forgotten Artists Spotlight...");
+            const forgottenArtist = getRandomForgottenArtist();
+            logInfo(`Selected artist: ${forgottenArtist.name} (${forgottenArtist.ethnicity})`);
+
+            // Try to find their artwork in museum APIs
+            // We'll search using their name
+            const { searchArtworkByArtist } = await import('./src/services/artService.js');
+            let spotlightArtwork = null;
+
+            // Try each search term
+            for (const searchTerm of forgottenArtist.search_terms) {
+                spotlightArtwork = await searchArtworkByArtist(searchTerm);
+                if (spotlightArtwork) break;
+            }
+
+            if (spotlightArtwork) {
+                logInfo(`✅ Found artwork: ${spotlightArtwork.title}`);
+
+                // Download image
+                const imageBuffer = await downloadAndEnhanceImage(spotlightArtwork.imageUrl);
+
+                // Generate spotlight content
+                const spotlightText = await generateForgottenArtistSpotlight(forgottenArtist, spotlightArtwork);
+
+                if (spotlightText) {
+                    logInfo("📝 Generated Spotlight Text", { length: spotlightText.length });
+                    await postTweet(spotlightText, imageBuffer, `${spotlightArtwork.title} by ${forgottenArtist.name}`);
+
+                    trackTweet(
+                        { title: spotlightArtwork.title, artist: forgottenArtist.name, museum: spotlightArtwork.museum },
+                        spotlightText,
+                        false,
+                        false,
+                        "Forgotten Artists Spotlight",
+                        imageBuffer.length
+                    );
+                    updateLastRunTime();
+                    logSuccess("✨ Forgotten Artists Spotlight posted successfully!");
+                    return;
+                } else {
+                    logWarn("⚠️ Failed to generate spotlight content, falling back.");
+                }
+            } else {
+                logWarn(`⚠️ No artwork found for ${forgottenArtist.name}, falling back to standard mode.`);
+            }
+        }
+
+        // 9. Standard Flow: Fetch Artwork
         logInfo("🎨 Searching for artwork...");
         const artwork = await fetchArtwork();
 
@@ -151,33 +206,21 @@ async function runBot() {
         }
         logSuccess(`Found: ${artwork.title} - ${artwork.artist}`);
 
-        // 7. Download and Enhance Image
+        // 10. Download and Enhance Image
         logInfo("📸 Enhancing image...");
         const imageBuffer = await downloadAndEnhanceImage(artwork.imageUrl);
 
-        // 8. Generate Content (AI with Vision)
+        // 11. Generate Content (AI with Vision)
         logInfo("🧠 Generating AI content with vision analysis...");
         const baseTweetText = await generateArtContent(artwork, artwork.imageUrl);
 
-        // 9. Smart Feature Rotation
+        // 12. Smart Feature Rotation
         logInfo("🎲 Selecting optional features...");
         const { selectOptionalFeatures } = await import('./src/services/rotationService.js');
         const movementTheme = todaysMovement ? todaysMovement.theme : null;
 
         // Check for Wallpaper Mode
         const { checkWallpaperReady } = await import('./src/services/imageService.js');
-        // We need image metadata, but we only have buffer. 
-        // We can check metadata from buffer using sharp if needed, but for now let's assume we can check it if we had dimensions.
-        // Actually, downloadAndEnhanceImage returns buffer. We lost dimensions.
-        // Let's skip dimension check here for now or rely on rotationService to pick features.
-
-        // To properly check wallpaper ready, we need dimensions. 
-        // Since we don't have them easily here without re-parsing buffer, 
-        // let's just add a random chance if it LOOKS like a portrait (which we can't know easily).
-        // BUT, `downloadAndEnhanceImage` logs dimensions.
-        // Let's modify `downloadAndEnhanceImage` to return dimensions OR just assume if we want.
-        // Better approach: Let's just add the message if we are lucky, OR re-parse buffer.
-        // Re-parsing buffer is cheap.
 
         const { default: sharp } = await import('sharp');
         const metadata = await sharp(imageBuffer).metadata();
@@ -197,8 +240,6 @@ async function runBot() {
         }
 
         // Add Creative Concepts to Rotation
-        // We can manually inject them or update rotationService. 
-        // For now, let's just randomly add them here to test.
         const features = selectOptionalFeatures(baseTweetText, artwork, movementTheme);
 
         // 10% chance for Cinema Crossover
@@ -304,10 +345,10 @@ async function runBot() {
 
         logInfo("📝 Generated Text", { length: tweetText.length });
 
-        // 10. Backup
+        // 13. Backup
         backupTweet(artwork, tweetText, imageBuffer);
 
-        // 11. Post Tweet
+        // 14. Post Tweet
         logInfo("🐦 Posting tweet...");
 
         // Handle Detail Zoom (Multi-image)
@@ -317,12 +358,12 @@ async function runBot() {
             await postTweet(tweetText, imageBuffer, `${artwork.title} by ${artwork.artist}`);
         }
 
-        // 12. Track Analytics (with feature usage)
+        // 15. Track Analytics (with feature usage)
         const hasBirthday = features.usedFeatures.includes('birthday');
         const hasGlossary = features.usedFeatures.includes('glossary');
         trackTweet(artwork, tweetText, hasBirthday, hasGlossary, movementTheme, imageBuffer.length, imageBuffer);
 
-        // 13. Update State
+        // 16. Update State
         updateLastRunTime();
         logSuccess("✨ Process completed successfully!");
 
