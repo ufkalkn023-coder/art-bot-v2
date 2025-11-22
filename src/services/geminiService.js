@@ -1,13 +1,148 @@
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { CONFIG } from '../config.js';
+
+// Initialize Gemini API
+const genAI = new GoogleGenerativeAI(CONFIG.GEMINI.API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+export async function generateArtContent(artwork, imageUrl) {
+   if (!model) return "Error: Gemini model not initialized.";
+
+   const prompt = `
+    Analyze this artwork and write a creative, engaging Twitter thread (max 280 chars per tweet).
+    
+    Artwork: "${artwork.title}" by ${artwork.artist} (${artwork.date})
+    Museum: ${artwork.museum}
+    
+    Your goal is to make art accessible and exciting.
+    
+    Structure:
+    1. Hook: A captivating opening sentence about the visual or emotional impact.
+    2. Insight: Interesting fact about the technique, history, or artist's life.
+    3. Meaning: Brief interpretation of the subject matter.
+    4. Engagement: A question to the audience.
+    
+    Tone: Enthusiastic, knowledgeable, slightly informal.
+    
+    Output ONLY the tweet text. Use emojis.
+    `;
+
+   try {
+      // For vision models, we would need to pass the image data. 
+      // Since we are using the text-only model for now (or if the image isn't passed as a Part),
+      // we will rely on the metadata.
+      // TODO: Implement actual vision capabilities if needed by passing image parts.
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Error:", error);
+      return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
+   }
+}
+
+export async function generateCinemaCrossover(artwork) {
+   if (!model) return null;
+
+   const prompt = `
+    Imagine "${artwork.title}" by ${artwork.artist} as a movie scene.
+    
+    Write a short, cinematic description (max 200 chars) connecting this artwork to a film genre or specific movie style.
+    
+    Example: "If this painting were a movie, it would be a Wes Anderson film - symmetrical, pastel-hued, and quietly melancholic. 🎬"
+    
+    Output ONLY the description.
+    `;
+
+   try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Cinema Error:", error);
+      return null;
+   }
+}
+
+export async function generateTimeCapsule(artwork) {
+   if (!model) return null;
+
+   const prompt = `
+    If "${artwork.title}" (${artwork.date}) were a time capsule, what single object or sound from that era would be trapped inside it?
+    
+    Write a short, poetic answer (max 200 chars).
+    
+    Output ONLY the answer.
+    `;
+
+   try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Time Capsule Error:", error);
+      return null;
+   }
+}
+
+export async function generateDetailZoomText(artwork) {
+   if (!model) return null;
+
+   const prompt = `
+    Write a short tweet (max 200 chars) encouraging people to look closer at the details of "${artwork.title}".
+    Focus on brushwork, lighting, or hidden details.
+    
+    Output ONLY the text.
+    `;
+
+   try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Detail Zoom Error:", error);
+      return null;
+   }
+}
+
+export async function generateQuizText(artwork) {
+   if (!model) return null;
+
+   const prompt = `
+    Create a "Guess the Artist" quiz tweet for "${artwork.title}".
+    
+    Format:
+    "🎨 Guess the Artist!
+    
+    Clue 1: [Stylistic clue]
+    Clue 2: [Biographical clue]
+    
+    (Answer in next tweet!) #ArtQuiz"
+    
+    Output ONLY the tweet text.
+    `;
+
+   try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Quiz Error:", error);
+      return null;
+   }
+}
+
 // --- Forgotten Artists Spotlight ---
 
 export async function generateForgottenArtistSpotlight(artist, artwork) {
-    if (!model) return null;
+   if (!model) return null;
 
-    const lifespan = artist.death_year 
-        ? `${artist.birth_year}-${artist.death_year}`
-        : `born ${artist.birth_year}`;
+   const lifespan = artist.death_year
+      ? `${artist.birth_year}-${artist.death_year}`
+      : `born ${artist.birth_year}`;
 
-    const prompt = `
+   const prompt = `
     You are writing a powerful, SEO-optimized spotlight on an underrepresented artist.
     
     Artist: ${artist.name} (${lifespan})
@@ -40,7 +175,7 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
     
     5. **Historical Context**: The barriers they faced
        - Systemic discrimination in the art world
-       - How their identity affected their career
+       - How they overcame discrimination (race, gender, etc.)
        - Contemporary artists who faced similar challenges
     
     6. **Legacy & Modern Relevance**: Why they matter today
@@ -73,12 +208,12 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
     Output ONLY the post text with proper formatting.
     `;
 
-    try {
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim();
-    } catch (error) {
-        console.error("❌ Gemini Spotlight Error:", error);
-        return null;
-    }
+   try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Spotlight Error:", error);
+      return null;
+   }
 }
