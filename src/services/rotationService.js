@@ -10,12 +10,11 @@ import { getRandomLesson, formatLesson } from './lessonService.js';
 import { getRandomSymbol, formatSymbol } from './symbolService.js';
 import { getRandomColorFact, formatColorFact } from './colorTheoryService.js';
 import { getRandomComposition, formatComposition } from './compositionService.js';
-import { getPopCultureConnection, formatPopCulture } from './popCultureService.js';
 import { getArtistComparison, formatComparison } from './comparisonService.js';
 import { getRestorationInfo, formatRestoration } from './restorationService.js';
 
-const MAX_TWEET_LENGTH = 280;
-const SAFE_LENGTH = 240; // Reduced to account for hashtags
+const MAX_TWEET_LENGTH = 20000; // X Premium Limit
+const SAFE_LENGTH = 19000; // Safe buffer
 
 /**
  * Smart rotation system to add optional features to tweets
@@ -34,7 +33,6 @@ export function selectOptionalFeatures(baseTweetText, artwork, movement) {
         symbol: null,
         colorFact: null,
         composition: null,
-        popCulture: null,
         comparison: null,
         restoration: null,
         hashtags: null,
@@ -200,19 +198,6 @@ export function selectOptionalFeatures(baseTweetText, artwork, movement) {
         }
     }
     // 10% chance (90-100%): No additional feature
-
-    // Check for pop culture connection (independent of rotation)
-    const popCulture = getPopCultureConnection(artwork.title);
-    if (popCulture) {
-        const popText = formatPopCulture(popCulture);
-        const testText = currentText + popText;
-
-        if (testText.length <= SAFE_LENGTH) {
-            features.popCulture = popText;
-            currentText = testText;
-            features.usedFeatures.push('popCulture');
-        }
-    }
 
     // Check for artist comparison
     const comparison = getArtistComparison(artwork.artist);
