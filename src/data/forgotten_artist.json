@@ -1,0 +1,343 @@
+{
+    "artists": [
+        {
+            "name": "Edmonia Lewis",
+            "birth_year": 1844,
+            "death_year": 1907,
+            "nationality": "American",
+            "ethnicity": "African American & Native American",
+            "gender": "Female",
+            "movement": "Neoclassical Sculpture",
+            "notable_works": [
+                "The Death of Cleopatra",
+                "Forever Free",
+                "Hagar"
+            ],
+            "why_forgotten": "First professional African American and Native American sculptor. Overlooked due to race and gender in 19th century art world.",
+            "museums": [
+                "Smithsonian American Art Museum",
+                "Metropolitan Museum of Art"
+            ],
+            "search_terms": [
+                "Edmonia Lewis",
+                "Mary Edmonia Lewis"
+            ]
+        },
+        {
+            "name": "Hilma af Klint",
+            "birth_year": 1862,
+            "death_year": 1944,
+            "nationality": "Swedish",
+            "ethnicity": "European",
+            "gender": "Female",
+            "movement": "Abstract Art Pioneer",
+            "notable_works": [
+                "The Ten Largest",
+                "Altarpiece",
+                "The Swan Series"
+            ],
+            "why_forgotten": "Created abstract art before Kandinsky but stipulated her work not be shown for 20 years after death. Rediscovered only in 1980s.",
+            "museums": [
+                "Moderna Museet Stockholm",
+                "Guggenheim Museum"
+            ],
+            "search_terms": [
+                "Hilma af Klint",
+                "Hilma Klint"
+            ]
+        },
+        {
+            "name": "Amrita Sher-Gil",
+            "birth_year": 1913,
+            "death_year": 1941,
+            "nationality": "Indian-Hungarian",
+            "ethnicity": "South Asian",
+            "gender": "Female",
+            "movement": "Indian Modernism",
+            "notable_works": [
+                "Three Girls",
+                "Bride's Toilet",
+                "Village Scene"
+            ],
+            "why_forgotten": "Died young at 28. Pioneer of modern Indian art but overshadowed by male contemporaries.",
+            "museums": [
+                "National Gallery of Modern Art, New Delhi"
+            ],
+            "search_terms": [
+                "Amrita Sher-Gil",
+                "Amrita Sher Gil"
+            ]
+        },
+        {
+            "name": "Kara Walker",
+            "birth_year": 1969,
+            "death_year": null,
+            "nationality": "American",
+            "ethnicity": "African American",
+            "gender": "Female",
+            "movement": "Contemporary Art",
+            "notable_works": [
+                "A Subtlety",
+                "The End of Uncle Tom",
+                "Slavery! Slavery!"
+            ],
+            "why_forgotten": "Not forgotten but underrepresented in traditional art history curricula. Confronts racism through provocative silhouettes.",
+            "museums": [
+                "MoMA",
+                "Whitney Museum",
+                "Tate Modern"
+            ],
+            "search_terms": [
+                "Kara Walker"
+            ]
+        },
+        {
+            "name": "Yayoi Kusama",
+            "birth_year": 1929,
+            "death_year": null,
+            "nationality": "Japanese",
+            "ethnicity": "East Asian",
+            "gender": "Female",
+            "movement": "Contemporary, Pop Art",
+            "notable_works": [
+                "Infinity Mirror Rooms",
+                "Pumpkin",
+                "Dots Obsession"
+            ],
+            "why_forgotten": "Overlooked for decades despite pioneering installation art. Only recently gained mainstream recognition.",
+            "museums": [
+                "MoMA",
+                "Tate Modern",
+                "Yayoi Kusama Museum Tokyo"
+            ],
+            "search_terms": [
+                "Yayoi Kusama",
+                "Kusama"
+            ]
+        },
+        {
+            "name": "Wifredo Lam",
+            "birth_year": 1902,
+            "death_year": 1982,
+            "nationality": "Cuban",
+            "ethnicity": "Afro-Cuban & Chinese",
+            "gender": "Male",
+            "movement": "Surrealism, Cubism",
+            "notable_works": [
+                "The Jungle",
+                "The Eternal Present",
+                "Zambezia"
+            ],
+            "why_forgotten": "Afro-Cuban heritage marginalized in European art canon despite working with Picasso.",
+            "museums": [
+                "MoMA",
+                "Tate Modern",
+                "Centre Pompidou"
+            ],
+            "search_terms": [
+                "Wifredo Lam"
+            ]
+        },
+        {
+            "name": "Artemisia Gentileschi",
+            "birth_year": 1593,
+            "death_year": 1653,
+            "nationality": "Italian",
+            "ethnicity": "European",
+            "gender": "Female",
+            "movement": "Baroque",
+            "notable_works": [
+                "Judith Slaying Holofernes",
+                "Susanna and the Elders",
+                "Self-Portrait as the Allegory of Painting"
+            ],
+            "why_forgotten": "One of few female Baroque painters. Overshadowed by male contemporaries like Caravaggio despite equal skill.",
+            "museums": [
+                "Uffizi Gallery",
+                "National Gallery London"
+            ],
+            "search_terms": [
+                "Artemisia Gentileschi"
+            ]
+        },
+        {
+            "name": "Jacob Lawrence",
+            "birth_year": 1917,
+            "death_year": 2000,
+            "nationality": "American",
+            "ethnicity": "African American",
+            "gender": "Male",
+            "movement": "Harlem Renaissance, Social Realism",
+            "notable_works": [
+                "The Migration Series",
+                "War Series",
+                "Builders"
+            ],
+            "why_forgotten": "Chronicled African American experience but underrepresented in mainstream art history.",
+            "museums": [
+                "MoMA",
+                "Phillips Collection",
+                "Whitney Museum"
+            ],
+            "search_terms": [
+                "Jacob Lawrence"
+            ]
+        },
+        {
+            "name": "Sofonisba Anguissola",
+            "birth_year": 1532,
+            "death_year": 1625,
+            "nationality": "Italian",
+            "ethnicity": "European",
+            "gender": "Female",
+            "movement": "Renaissance",
+            "notable_works": [
+                "The Chess Game",
+                "Self-Portrait at the Easel",
+                "Portrait of Philip II"
+            ],
+            "why_forgotten": "First internationally known female Renaissance painter. Court painter to Philip II but overshadowed by male peers.",
+            "museums": [
+                "Museo del Prado",
+                "Uffizi Gallery"
+            ],
+            "search_terms": [
+                "Sofonisba Anguissola"
+            ]
+        },
+        {
+            "name": "Horace Pippin",
+            "birth_year": 1888,
+            "death_year": 1946,
+            "nationality": "American",
+            "ethnicity": "African American",
+            "gender": "Male",
+            "movement": "Folk Art, Modernism",
+            "notable_works": [
+                "The End of the War: Starting Home",
+                "John Brown Going to His Hanging",
+                "Domino Players"
+            ],
+            "why_forgotten": "Self-taught artist who depicted African American life. Disabled WWI veteran whose work deserves wider recognition.",
+            "museums": [
+                "Pennsylvania Academy of Fine Arts",
+                "MoMA"
+            ],
+            "search_terms": [
+                "Horace Pippin"
+            ]
+        },
+        {
+            "name": "Berthe Morisot",
+            "birth_year": 1841,
+            "death_year": 1895,
+            "nationality": "French",
+            "ethnicity": "European",
+            "gender": "Female",
+            "movement": "Impressionism",
+            "notable_works": [
+                "The Cradle",
+                "Summer's Day",
+                "Woman at Her Toilette"
+            ],
+            "why_forgotten": "Only female founding member of Impressionists. Overshadowed by Monet, Renoir despite equal talent.",
+            "museums": [
+                "Musée d'Orsay",
+                "National Gallery of Art"
+            ],
+            "search_terms": [
+                "Berthe Morisot"
+            ]
+        },
+        {
+            "name": "Barkley L. Hendricks",
+            "birth_year": 1945,
+            "death_year": 2017,
+            "nationality": "American",
+            "ethnicity": "African American",
+            "gender": "Male",
+            "movement": "Contemporary Realism",
+            "notable_works": [
+                "Icon for My Man Superman",
+                "Lawdy Mama",
+                "Brilliantly Endowed"
+            ],
+            "why_forgotten": "Pioneered contemporary Black portraiture decades before it became mainstream. Rediscovered posthumously.",
+            "museums": [
+                "Pennsylvania Academy of Fine Arts",
+                "Studio Museum Harlem"
+            ],
+            "search_terms": [
+                "Barkley Hendricks",
+                "Barkley L. Hendricks"
+            ]
+        },
+        {
+            "name": "Njideka Akunyili Crosby",
+            "birth_year": 1983,
+            "death_year": null,
+            "nationality": "Nigerian-American",
+            "ethnicity": "African",
+            "gender": "Female",
+            "movement": "Contemporary",
+            "notable_works": [
+                "The Beautyful Ones",
+                "I Still Face You",
+                "Predecessors"
+            ],
+            "why_forgotten": "Contemporary artist exploring Nigerian diaspora. Underrepresented in major museum collections.",
+            "museums": [
+                "Whitney Museum",
+                "Tate Modern"
+            ],
+            "search_terms": [
+                "Njideka Akunyili Crosby",
+                "Njideka Crosby"
+            ]
+        },
+        {
+            "name": "Remedios Varo",
+            "birth_year": 1908,
+            "death_year": 1963,
+            "nationality": "Spanish-Mexican",
+            "ethnicity": "European/Latin American",
+            "gender": "Female",
+            "movement": "Surrealism",
+            "notable_works": [
+                "The Creation of the Birds",
+                "Embroidering the Earth's Mantle",
+                "Celestial Pablum"
+            ],
+            "why_forgotten": "Surrealist painter overshadowed by male contemporaries like Dalí. Gained recognition only after death.",
+            "museums": [
+                "Museo de Arte Moderno, Mexico City"
+            ],
+            "search_terms": [
+                "Remedios Varo"
+            ]
+        },
+        {
+            "name": "Alma Thomas",
+            "birth_year": 1891,
+            "death_year": 1978,
+            "nationality": "American",
+            "ethnicity": "African American",
+            "gender": "Female",
+            "movement": "Abstract Expressionism, Color Field",
+            "notable_works": [
+                "Resurrection",
+                "Starry Night and the Astronauts",
+                "Red Azaleas Singing and Dancing Rock and Roll Music"
+            ],
+            "why_forgotten": "First African American woman to have solo show at Whitney. Pioneered color field painting but underrecognized.",
+            "museums": [
+                "Smithsonian American Art Museum",
+                "Whitney Museum"
+            ],
+            "search_terms": [
+                "Alma Thomas",
+                "Alma Woodsey Thomas"
+            ]
+        }
+    ]
+}
