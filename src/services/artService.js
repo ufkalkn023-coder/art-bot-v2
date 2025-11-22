@@ -157,7 +157,8 @@ export async function fetchArtwork() {
     for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
         try {
             // Random page to get variety
-            const randomPage = Math.floor(Math.random() * 100) + 1;
+            // Random page to get variety (Increased range to 1000)
+            const randomPage = Math.floor(Math.random() * 1000) + 1;
 
             const response = await axios.get(
                 `https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=1&page=${randomPage}&fields=id,title,image_id,artist_title,date_display,medium_display`,
