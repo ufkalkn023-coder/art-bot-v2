@@ -147,33 +147,49 @@ export async function searchArtworks(query, limit = 5) {
 
 // Fetch a random artwork (Main Function)
 export async function fetchArtwork() {
-    try {
-        // Random page to get variety
-        const randomPage = Math.floor(Math.random() * 100) + 1;
+    // Import database to check for duplicates
+    const { getAllTweets } = await import('./databaseService.js');
+    const postedTweets = getAllTweets();
+    const postedTitles = new Set(postedTweets.map(t => t.title.toLowerCase()));
 
-        const response = await axios.get(
-            `https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=1&page=${randomPage}&fields=id,title,image_id,artist_title,date_display,medium_display`,
-            CONFIG.AXIOS
-        );
+    const MAX_ATTEMPTS = 20; // Try up to 20 times to find a new artwork
 
-        const data = response.data;
-        if (data.data && data.data.length > 0) {
-            const art = data.data[0];
-            if (art.image_id) {
-                return {
-                    title: art.title,
-                    artist: art.artist_title || "Unknown Artist",
-                    date: art.date_display || "Unknown Date",
-                    medium: art.medium_display || "Unknown Medium",
-                    museum: "Art Institute of Chicago",
-                    link: `https://www.artic.edu/artworks/${art.id}`,
-                    imageUrl: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`
-                };
+    for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+        try {
+            // Random page to get variety
+            const randomPage = Math.floor(Math.random() * 100) + 1;
+
+            const response = await axios.get(
+                `https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=1&page=${randomPage}&fields=id,title,image_id,artist_title,date_display,medium_display`,
+                CONFIG.AXIOS
+            );
+
+            const data = response.data;
+            if (data.data && data.data.length > 0) {
+                const art = data.data[0];
+
+                // Check if this artwork was already posted
+                if (art.image_id && !postedTitles.has(art.title.toLowerCase())) {
+                    console.log(`✅ Found new artwork: "${art.title}" (attempt ${attempt + 1})`);
+                    return {
+                        title: art.title,
+                        artist: art.artist_title || "Unknown Artist",
+                        date: art.date_display || "Unknown Date",
+                        medium: art.medium_display || "Unknown Medium",
+                        museum: "Art Institute of Chicago",
+                        link: `https://www.artic.edu/artworks/${art.id}`,
+                        imageUrl: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`
+                    };
+                } else {
+                    console.log(`⚠️ Artwork "${art.title}" already posted, trying again...`);
+                }
             }
+        } catch (e) {
+            console.error("Error fetching random artwork:", e.message);
         }
-    } catch (e) {
-        console.error("Error fetching random artwork:", e.message);
     }
+
+    console.warn(`❌ Could not find a new artwork after ${MAX_ATTEMPTS} attempts`);
     return null;
 }
 
