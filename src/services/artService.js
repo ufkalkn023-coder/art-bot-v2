@@ -176,3 +176,40 @@ export async function fetchArtwork() {
     }
     return null;
 }
+
+// Fetch 4 random artworks for Quartet Mode
+export async function fetchRandomQuartet() {
+    try {
+        // We want 4 distinct artworks.
+        // Strategy: Fetch 10 items from a random page and pick 4 valid ones.
+        const randomPage = Math.floor(Math.random() * 100) + 1;
+
+        const response = await axios.get(
+            `https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&page=${randomPage}&fields=id,title,image_id,artist_title,date_display`,
+            CONFIG.AXIOS
+        );
+
+        const data = response.data;
+        if (data.data && data.data.length >= 4) {
+            const validArtworks = data.data
+                .filter(art => art.image_id) // Must have image
+                .map(art => ({
+                    title: art.title,
+                    artist: art.artist_title || "Unknown Artist",
+                    date: art.date_display || "Unknown Date",
+                    museum: "Art Institute of Chicago",
+                    link: `https://www.artic.edu/artworks/${art.id}`,
+                    imageUrl: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`
+                }));
+
+            if (validArtworks.length >= 4) {
+                // Shuffle and take 4
+                const shuffled = validArtworks.sort(() => 0.5 - Math.random());
+                return shuffled.slice(0, 4);
+            }
+        }
+    } catch (e) {
+        console.error("Error fetching random quartet:", e.message);
+    }
+    return null;
+}
