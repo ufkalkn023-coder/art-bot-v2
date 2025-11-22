@@ -1,7 +1,7 @@
 // artService.js
 
 // 1. Gerekli kütüphaneyi içe aktarın. Axios, HTTP istekleri için gereklidir.
-import axios from 'axios'; 
+import axios from 'axios';
 
 // 2. CONFIG nesnesini tanımlayın.
 // Bu nesne, axios istekleri için timeout gibi ayarları tutar. 
@@ -64,7 +64,7 @@ export async function searchArtworkByArtist(artistName) {
                         CONFIG.AXIOS
                     );
                     const art = artRes.data;
-                    if (art.primaryImage && art.artistDisplayName && 
+                    if (art.primaryImage && art.artistDisplayName &&
                         art.artistDisplayName.toLowerCase().includes(artistName.toLowerCase())) {
                         return {
                             title: art.title,
@@ -77,7 +77,7 @@ export async function searchArtworkByArtist(artistName) {
                     }
                 } catch (e) {
                     // Tekil eser sorgusu hatası, bir sonraki esere geç
-                    continue; 
+                    continue;
                 }
             }
         }
@@ -94,7 +94,7 @@ export async function searchArtworkByArtist(artistName) {
         if (res.data.data && res.data.data.length > 0) {
             for (const art of res.data.data) {
                 // Cleveland API'da artist bilgisi creators dizisi içinde olabilir
-                const artistDesc = art.creators?.[0]?.description || ""; 
+                const artistDesc = art.creators?.[0]?.description || "";
                 if (art.images?.web?.url && artistDesc.toLowerCase().includes(artistName.toLowerCase())) {
                     return {
                         title: art.title,
@@ -135,7 +135,7 @@ export async function searchArtworks(query, limit = 5) {
                     link: `https://www.artic.edu/artworks/${art.id}`,
                     imageUrl: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`
                 }));
-            
+
             return results.slice(0, limit);
         }
     } catch (e) {
@@ -144,3 +144,35 @@ export async function searchArtworks(query, limit = 5) {
     return [];
 }
 
+
+// Fetch a random artwork (Main Function)
+export async function fetchArtwork() {
+    try {
+        // Random page to get variety
+        const randomPage = Math.floor(Math.random() * 100) + 1;
+
+        const response = await axios.get(
+            `https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=1&page=${randomPage}&fields=id,title,image_id,artist_title,date_display,medium_display`,
+            CONFIG.AXIOS
+        );
+
+        const data = response.data;
+        if (data.data && data.data.length > 0) {
+            const art = data.data[0];
+            if (art.image_id) {
+                return {
+                    title: art.title,
+                    artist: art.artist_title || "Unknown Artist",
+                    date: art.date_display || "Unknown Date",
+                    medium: art.medium_display || "Unknown Medium",
+                    museum: "Art Institute of Chicago",
+                    link: `https://www.artic.edu/artworks/${art.id}`,
+                    imageUrl: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`
+                };
+            }
+        }
+    } catch (e) {
+        console.error("Error fetching random artwork:", e.message);
+    }
+    return null;
+}
