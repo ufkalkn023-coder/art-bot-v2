@@ -9,22 +9,24 @@ export async function generateArtContent(artwork, imageUrl) {
    if (!model) return "Error: Gemini model not initialized.";
 
    const prompt = `
-    Analyze this artwork and write a creative, engaging Twitter thread (max 280 chars per tweet).
+    Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (up to 20,000 characters).
     
     Artwork: "${artwork.title}" by ${artwork.artist} (${artwork.date})
     Museum: ${artwork.museum}
     
-    Your goal is to make art accessible and exciting.
+    Your goal is to be the ultimate digital art historian—accessible but deeply knowledgeable.
     
     Structure:
-    1. Hook: A captivating opening sentence about the visual or emotional impact.
-    2. Insight: Interesting fact about the technique, history, or artist's life.
-    3. Meaning: Brief interpretation of the subject matter.
-    4. Engagement: A question to the audience.
+    1. **The Hook**: A captivating opening about the visual impact or a surprising fact.
+    2. **The Story**: The narrative behind the creation. What was happening in the artist's life?
+    3. **Deep Analysis**: Break down the technique, brushwork, lighting, and composition.
+    4. **Hidden Details**: Point out things most people miss.
+    5. **Historical Context**: Place it in the timeline of art history. Why does it matter?
+    6. **SEO Keywords**: Naturally weave in keywords like "Art History", "Masterpiece", "${artwork.artist}", "${artwork.movement}", "Oil Painting", etc.
     
-    Tone: Enthusiastic, knowledgeable, slightly informal.
+    Tone: Enthusiastic, authoritative, storytelling, slightly informal but educational.
     
-    Output ONLY the tweet text. Use emojis.
+    Output ONLY the text. Use emojis to break up sections.
     `;
 
    try {
@@ -42,28 +44,7 @@ export async function generateArtContent(artwork, imageUrl) {
    }
 }
 
-export async function generateCinemaCrossover(artwork) {
-   if (!model) return null;
 
-   const prompt = `
-    Imagine "${artwork.title}" by ${artwork.artist} as a movie scene.
-    
-    Write a short, cinematic description (max 200 chars) connecting this artwork to a film genre or specific movie style.
-    
-    Example: "If this painting were a movie, it would be a Wes Anderson film - symmetrical, pastel-hued, and quietly melancholic. 🎬"
-    
-    Output ONLY the description.
-    `;
-
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Cinema Error:", error);
-      return null;
-   }
-}
 
 export async function generateTimeCapsule(artwork) {
    if (!model) return null;
