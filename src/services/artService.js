@@ -115,9 +115,32 @@ export async function searchArtworkByArtist(artistName) {
     return null;
 }
 
-// Eğer daha önce aranan 'searchArtworks' fonksiyonu da projenizde varsa,
-// o fonksiyonu da buraya ekleyip export etmeniz gerekir.
-/* export async function searchArtworks(query) {
-    // ... searchArtworks fonksiyon içeriği
+
+// General Search Function (for Exhibition Mode)
+export async function searchArtworks(query, limit = 5) {
+    try {
+        const response = await axios.get(
+            `https://api.artic.edu/api/v1/artworks/search?q=${encodeURIComponent(query)}&query[term][is_public_domain]=true&limit=${limit * 2}&fields=id,title,image_id,artist_title,date_display`,
+            CONFIG.AXIOS
+        );
+        const data = response.data;
+        if (data.data && data.data.length > 0) {
+            const results = data.data
+                .filter(art => art.image_id) // Ensure image exists
+                .map(art => ({
+                    title: art.title,
+                    artist: art.artist_title || "Unknown Artist",
+                    date: art.date_display || "Unknown Date",
+                    museum: "Art Institute of Chicago",
+                    link: `https://www.artic.edu/artworks/${art.id}`,
+                    imageUrl: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`
+                }));
+            
+            return results.slice(0, limit);
+        }
+    } catch (e) {
+        console.error(`Error searching artworks for query (${query}):`, e.message);
+    }
+    return [];
 }
-*/
+
