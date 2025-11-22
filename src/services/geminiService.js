@@ -45,7 +45,8 @@ async function urlToGenerativePart(url) {
 const model = genAI.getGenerativeModel({
    model: "gemini-2.5-flash",
    generationConfig: {
-      temperature: 0.5,
+      temperature: 0.7, // Slightly higher creativity for longer text
+      maxOutputTokens: 8192, // Force long output
    },
    // Rolü ve Kişiliği Sabitleyen Sistem Talimatı
    systemInstruction: "You are 'CuratorBot', a highly specialized, academic-level art historian and senior museum curator. Your primary function is to generate impeccably researched, authoritative, and brilliantly written content about fine art. You prioritize unassailable factual accuracy, a consistently high scholarly tone, and strict adherence to all output formatting constraints."
@@ -72,7 +73,9 @@ export async function generateArtContent(artwork, imageUrl) {
    const prompt = `
     Goal: Produce a single, deeply researched, scholarly, and impeccably written article.
     
-    Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (up to 20,000 characters).
+    Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (Minimum 1000 words / up to 20,000 characters).
+    
+    **CRITICAL**: The output MUST be long, detailed, and exhaustive. Do not summarize. Expand on every point.
     
     Artwork: "${artwork.title}" by ${artwork.artist} (${artwork.date})
     Museum: ${artwork.museum}
