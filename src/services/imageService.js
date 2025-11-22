@@ -25,22 +25,10 @@ export async function downloadAndEnhanceImage(imageUrl) {
             });
         }
 
-        // 4. Add Watermark (subtle, bottom-right)
-        const watermarkSvg = Buffer.from(`
-            <svg width="200" height="30">
-                <text x="10" y="20" font-family="Arial" font-size="14" fill="white" opacity="0.6">
-                    ArtArchive
-                </text>
-            </svg>
-        `);
+        // 4. Add Watermark (REMOVED as per user request)
+        // const watermarkSvg = ...
+        // processedImage = processedImage.composite(...)
 
-        const watermark = await sharp(watermarkSvg).png().toBuffer();
-
-        processedImage = processedImage.composite([{
-            input: watermark,
-            gravity: 'southeast',
-            blend: 'over'
-        }]);
 
         // 5. Convert to JPEG and optimize
         const finalBuffer = await processedImage
