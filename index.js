@@ -141,60 +141,9 @@ async function runBot() {
             }
         }
 
-        // 8. Forgotten Artists Spotlight (Every Monday + 15% random)
-        const { shouldRunForgottenArtistSpotlight, getRandomForgottenArtist } = await import('./src/services/forgottenArtistsService.js');
-        const { generateForgottenArtistSpotlight } = await import('./src/services/geminiService.js');
+        // 8. Forgotten Artists Spotlight (REMOVED)
+        // Feature removed as per user request.
 
-        const isMonday = shouldRunForgottenArtistSpotlight();
-        const randomSpotlight = Math.random() < 0.15;
-
-        if (isMonday || randomSpotlight) {
-            logInfo("🌟 Triggering Forgotten Artists Spotlight...");
-            const forgottenArtist = getRandomForgottenArtist();
-            logInfo(`Selected artist: ${forgottenArtist.name} (${forgottenArtist.ethnicity})`);
-
-            // Try to find their artwork in museum APIs
-            // We'll search using their name
-            const { searchArtworkByArtist } = await import('./src/services/artService.js');
-            let spotlightArtwork = null;
-
-            // Try each search term
-            for (const searchTerm of forgottenArtist.search_terms) {
-                spotlightArtwork = await searchArtworkByArtist(searchTerm);
-                if (spotlightArtwork) break;
-            }
-
-            if (spotlightArtwork) {
-                logInfo(`✅ Found artwork: ${spotlightArtwork.title}`);
-
-                // Download image
-                const imageBuffer = await downloadAndEnhanceImage(spotlightArtwork.imageUrl);
-
-                // Generate spotlight content
-                const spotlightText = await generateForgottenArtistSpotlight(forgottenArtist, spotlightArtwork);
-
-                if (spotlightText) {
-                    logInfo("📝 Generated Spotlight Text", { length: spotlightText.length });
-                    await postTweet(spotlightText, imageBuffer, `${spotlightArtwork.title} by ${forgottenArtist.name}`);
-
-                    trackTweet(
-                        { title: spotlightArtwork.title, artist: forgottenArtist.name, museum: spotlightArtwork.museum },
-                        spotlightText,
-                        false,
-                        false,
-                        "Forgotten Artists Spotlight",
-                        imageBuffer.length
-                    );
-                    updateLastRunTime();
-                    logSuccess("✨ Forgotten Artists Spotlight posted successfully!");
-                    return;
-                } else {
-                    logWarn("⚠️ Failed to generate spotlight content, falling back.");
-                }
-            } else {
-                logWarn(`⚠️ No artwork found for ${forgottenArtist.name}, falling back to standard mode.`);
-            }
-        }
 
         // 9. Standard Flow: Fetch Artwork
         logInfo("🎨 Searching for artwork...");
