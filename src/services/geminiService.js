@@ -3,12 +3,17 @@ import { CONFIG } from '../config.js';
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(CONFIG.GEMINI.API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+// Model güncellendi: Hızlı ve çok modlu (görsel/metin) yetenekler için güncel model
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 export async function generateArtContent(artwork, imageUrl) {
-   if (!model) return "Error: Gemini model not initialized.";
+    if (!model) return "Error: Gemini model not initialized.";
 
-   const prompt = `
+    // Not: Bu prompt, görselin analiz edilebileceği varsayımıyla yazılmıştır.
+    // Ancak görsel Part'ı API çağrısına dahil etmediğin sürece
+    // (ki bu, dosya okuma ve base64 dönüşümü gerektirir),
+    // model sadece metinsel metadata'ya dayanacaktır.
+    const prompt = `
     Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (up to 20,000 characters).
     
     Artwork: "${artwork.title}" by ${artwork.artist} (${artwork.date})
@@ -29,55 +34,50 @@ export async function generateArtContent(artwork, imageUrl) {
     Output ONLY the text. Do NOT use emojis or markdown symbols like ###. You may use **bold** for section titles only. Use plain text with clear paragraph breaks.
     `;
 
-   try {
-      // For vision models, we would need to pass the image data. 
-      // Since we are using the text-only model for now (or if the image isn't passed as a Part),
-      // we will rely on the metadata.
-      // TODO: Implement actual vision capabilities if needed by passing image parts.
-
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Error:", error);
-      return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
-   }
+    try {
+        // Şu an sadece metin gönderiliyor. Eğer bir görsel analizi isteniyorsa,
+        // model.generateContent([prompt, imagePart]) şeklinde çağrı yapılmalıdır.
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        return response.text().trim();
+    } catch (error) {
+        console.error("❌ Gemini Error:", error);
+        return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
+    }
 }
 
 
-
 export async function generateDetailZoomText(artwork) {
-   if (!model) return null;
+    if (!model) return null;
 
-   const prompt = `
+    const prompt = `
     Write a short tweet (max 200 chars) encouraging people to look closer at the details of "${artwork.title}".
     Focus on brushwork, lighting, or hidden details.
     
     Output ONLY the text.
     `;
 
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Detail Zoom Error:", error);
-      return null;
-   }
+    try {
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        return response.text().trim();
+    } catch (error) {
+        console.error("❌ Gemini Detail Zoom Error:", error);
+        return null;
+    }
 }
-
 
 
 // --- Forgotten Artists Spotlight ---
 
 export async function generateForgottenArtistSpotlight(artist, artwork) {
-   if (!model) return null;
+    if (!model) return null;
 
-   const lifespan = artist.death_year
-      ? `${artist.birth_year}-${artist.death_year}`
-      : `born ${artist.birth_year}`;
+    const lifespan = artist.death_year
+        ? `${artist.birth_year}-${artist.death_year}`
+        : `born ${artist.birth_year}`;
 
-   const prompt = `
+    const prompt = `
     You are writing a powerful, SEO-optimized spotlight on an underrepresented artist.
     
     Artist: ${artist.name} (${lifespan})
@@ -91,50 +91,50 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
     Write a comprehensive social media post (up to 20,000 characters) that:
     
     1. **Opening Hook**: Start with a powerful question or statement about representation in art
-       Example: "Why don't we know ${artist.name}'s name as well as Picasso's?"
+        Example: "Why don't we know ${artist.name}'s name as well as Picasso's?"
     
     2. **Artist's Story**: Tell their compelling biography
-       - Early life and barriers they faced
-       - How they overcame discrimination (race, gender, etc.)
-       - Their artistic journey and breakthrough moments
+        - Early life and barriers they faced
+        - How they overcame discrimination (race, gender, etc.)
+        - Their artistic journey and breakthrough moments
     
     3. **Artistic Contributions**: Analyze their unique style and innovations
-       - What made their work groundbreaking
-       - How they influenced art history
-       - Specific techniques or themes they pioneered
+        - What made their work groundbreaking
+        - How they influenced art history
+        - Specific techniques or themes they pioneered
     
     4. **This Artwork**: Deep analysis of "${artwork.title}"
-       - Visual description
-       - Symbolism and meaning
-       - Why it's significant in their body of work
+        - Visual description
+        - Symbolism and meaning
+        - Why it's significant in their body of work
     
     5. **Historical Context**: The barriers they faced
-       - Systemic discrimination in the art world
-       - How they overcame discrimination (race, gender, etc.)
-       - Contemporary artists who faced similar challenges
+        - Systemic discrimination in the art world
+        - How they overcame discrimination (race, gender, etc.)
+        - Contemporary artists who faced similar challenges
     
     6. **Legacy & Modern Relevance**: Why they matter today
-       - How they paved the way for diverse artists
-       - Recent recognition or exhibitions
-       - What we can learn from their story
+        - How they paved the way for diverse artists
+        - Recent recognition or exhibitions
+        - What we can learn from their story
     
     7. **Call to Action**: Encourage learning more
-       - Where to see their work (museums: ${artist.museums.join(', ')})
-       - Invite discussion about diversity in art
+        - Where to see their work (museums: ${artist.museums.join(', ')})
+        - Invite discussion about diversity in art
     
     8. **SEO Keywords** (naturally integrate):
-       - "${artist.name}"
-       - "underrepresented artists"
-       - "diversity in art"
-       - "${artist.ethnicity} artists"
-       - "${artist.gender} artists in history"
-       - "${artist.movement}"
+        - "${artist.name}"
+        - "underrepresented artists"
+        - "diversity in art"
+        - "${artist.ethnicity} artists"
+        - "${artist.gender} artists in history"
+        - "${artist.movement}"
     
     9. **Hashtags** (10-12):
-       - Broad: #ArtHistory #DiversityInArt #RepresentationMatters
-       - Specific: #${artist.name.replace(/\s+/g, '')} #${artist.ethnicity.replace(/\s+/g, '')}Artists
-       - Movement: #${artist.movement.replace(/\s+/g, '')}
-       - Engagement: #ForgottenArtists #ArtEducation #MuseumCollection
+        - Broad: #ArtHistory #DiversityInArt #RepresentationMatters
+        - Specific: #${artist.name.replace(/\s+/g, '')} #${artist.ethnicity.replace(/\s+/g, '')}Artists
+        - Movement: #${artist.movement.replace(/\s+/g, '')}
+        - Engagement: #ForgottenArtists #ArtEducation #MuseumCollection
     
     **Tone**: Respectful, empowering, educational, and passionate. Celebrate their achievements while acknowledging injustice.
     
@@ -143,14 +143,12 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
     Output ONLY the post text with proper formatting.
     `;
 
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Spotlight Error:", error);
-      return null;
-   }
+    try {
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        return response.text().trim();
+    } catch (error) {
+        console.error("❌ Gemini Spotlight Error:", error);
+        return null;
+    }
 }
-
-
