@@ -67,79 +67,7 @@ async function runBot() {
             logInfo(`🎂 Birthday detected: ${birthdayArtist.name}`, birthdayArtist);
         }
 
-        // 5. Check for Scheduled Mini Exhibition
-        if (shouldRunNow()) {
-            logInfo("🗓️ Scheduled Mini Exhibition triggered");
-            const prefs = getPreferences(process.env.BOT_HANDLE || 'default');
-            const exhibition = await generateExhibition(prefs);
-            if (exhibition) {
-                logInfo("📝 Generated Exhibition Text", { length: exhibition.text.length });
-                logInfo("🐦 Posting exhibition tweet...");
-                await postTweet(exhibition.text, exhibition.images, exhibition.altTexts);
-                trackTweet(
-                    { title: "Mini Exhibition", artist: "Various", museum: "Various" },
-                    exhibition.text,
-                    false,
-                    false,
-                    "Mini Exhibition",
-                    exhibition.images.reduce((acc, buf) => acc + buf.length, 0)
-                );
-                updateLastRunTime();
-                logSuccess("✨ Scheduled Mini Exhibition posted successfully!");
-                return;
-            } else {
-                logWarn("⚠️ Scheduled Mini Exhibition generation failed, falling back to standard mode.");
-            }
-        }
-        // 6. Random Mini Exhibition (10% Chance) – kept for testing
-        const randomExhibition = Math.random();
-        if (randomExhibition < 0.10) {
-            logInfo("🖼️ Triggering Random Mini Exhibition Mode...");
-            const exhibition = await generateExhibition();
-            if (exhibition) {
-                logInfo("📝 Generated Exhibition Text", { length: exhibition.text.length });
-                await postTweet(exhibition.text, exhibition.images, exhibition.altTexts);
-                trackTweet(
-                    { title: "Mini Exhibition", artist: "Various", museum: "Various" },
-                    exhibition.text,
-                    false,
-                    false,
-                    "Mini Exhibition",
-                    exhibition.images.reduce((acc, buf) => acc + buf.length, 0)
-                );
-                updateLastRunTime();
-                logSuccess("✨ Random Mini Exhibition posted successfully!");
-                return;
-            } else {
-                logWarn("⚠️ Random Mini Exhibition generation failed, falling back to standard mode.");
-            }
-        }
-
-        // 7. Evolution Series (5% Chance) - NEW
-        const randomEvolution = Math.random();
-        if (randomEvolution < 0.05) {
-            logInfo("🧬 Triggering Evolution Series Mode...");
-            const { generateEvolutionSeries } = await import('./src/services/evolutionService.js');
-            const evolution = await generateEvolutionSeries();
-
-            if (evolution) {
-                logInfo("📝 Generated Evolution Series Text", { length: evolution.text.length });
-                await postTweet(evolution.text, evolution.mediaBuffer, evolution.altText);
-                trackTweet(
-                    { title: "Evolution Series", artist: "Various", museum: "Various" },
-                    evolution.text,
-                    false,
-                    false,
-                    "Evolution Series",
-                    evolution.mediaBuffer.length
-                );
-                updateLastRunTime();
-                logSuccess("✨ Evolution Series posted successfully!");
-                return;
-            } else {
-                logWarn("⚠️ Evolution Series generation failed, falling back to standard mode.");
-            }
-        }
+        // 5-7. Mini Exhibition & Evolution Series (REMOVED for blog format)
 
         // 8. Forgotten Artists Spotlight (REMOVED)
         // Feature removed as per user request.
@@ -191,18 +119,10 @@ async function runBot() {
         // Add Creative Concepts to Rotation
         const features = selectOptionalFeatures(baseTweetText, artwork, movementTheme);
 
-        // 10% chance for Time Capsule
-        if (Math.random() < 0.10) {
-            const { generateTimeCapsule } = await import('./src/services/geminiService.js');
-            const capsuleText = await generateTimeCapsule(artwork);
-            if (capsuleText) {
-                features.finalText += `\n\n${capsuleText}`;
-                features.usedFeatures.push('time_capsule');
-            }
-        }
+        // Time Capsule (REMOVED for blog format)
 
-        // 10% chance for Detail Zoom (Phase 2)
-        if (Math.random() < 0.10 && !features.usedFeatures.includes('time_capsule')) {
+        // 20% chance for Detail Zoom
+        if (Math.random() < 0.20 && features.usedFeatures.length === 0) {
             const { createDetailCrop } = await import('./src/services/imageService.js');
             const { generateDetailZoomText } = await import('./src/services/geminiService.js');
 
@@ -217,18 +137,10 @@ async function runBot() {
             }
         }
 
-        // 10% chance for Interactive Quiz (Phase 2)
-        if (Math.random() < 0.10 && features.usedFeatures.length === 0) { // Only if no other feature used
-            const { generateQuizText } = await import('./src/services/geminiService.js');
-            const quizText = await generateQuizText(artwork);
-            if (quizText) {
-                features.finalText = quizText; // Replace text for this mode
-                features.usedFeatures.push('interactive_quiz');
-            }
-        }
+        // Interactive Quiz (REMOVED for blog format)
 
-        // 5% chance for Quartet Mode (4-Photo) - NEW
-        if (Math.random() < 0.05 && features.usedFeatures.length === 0) {
+        // 20% chance for Quartet Mode (4-Photo)
+        if (Math.random() < 0.20 && features.usedFeatures.length === 0) {
             logInfo("🖼️ Triggering Quartet Mode (4-Photo)...");
             const { fetchRandomQuartet } = await import('./src/services/artService.js');
             const quartet = await fetchRandomQuartet();
