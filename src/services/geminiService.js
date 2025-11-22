@@ -3,7 +3,7 @@ import { CONFIG } from '../config.js';
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(CONFIG.GEMINI.API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 export async function generateArtContent(artwork, imageUrl) {
    if (!model) return "Error: Gemini model not initialized.";
