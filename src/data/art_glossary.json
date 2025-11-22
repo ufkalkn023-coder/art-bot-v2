@@ -1,0 +1,54 @@
+{
+    "terms": [
+        {
+            "term": "Chiaroscuro",
+            "definition": "The use of strong contrasts between light and dark to create volume and drama",
+            "example": "Caravaggio's dramatic lighting"
+        },
+        {
+            "term": "Impasto",
+            "definition": "Thick application of paint that stands out from the canvas surface",
+            "example": "Van Gogh's textured brushstrokes"
+        },
+        {
+            "term": "Sfumato",
+            "definition": "Soft, almost imperceptible transitions between colors and tones",
+            "example": "Leonardo da Vinci's Mona Lisa"
+        },
+        {
+            "term": "Trompe-l'œil",
+            "definition": "Art technique that creates optical illusions of three-dimensional objects",
+            "example": "Realistic still life paintings"
+        },
+        {
+            "term": "Pentimento",
+            "definition": "Visible traces of earlier painting beneath the current surface",
+            "example": "Changes artists made during creation"
+        },
+        {
+            "term": "Glazing",
+            "definition": "Applying thin, transparent layers of paint over dried layers",
+            "example": "Renaissance masters' luminous colors"
+        },
+        {
+            "term": "Grisaille",
+            "definition": "Painting executed entirely in shades of gray or neutral tones",
+            "example": "Monochromatic underpainting"
+        },
+        {
+            "term": "Alla Prima",
+            "definition": "Wet-on-wet painting technique completed in one session",
+            "example": "Impressionist plein air paintings"
+        },
+        {
+            "term": "Scumbling",
+            "definition": "Applying a thin, opaque layer over a dried layer to create texture",
+            "example": "Creating atmospheric effects"
+        },
+        {
+            "term": "Contrapposto",
+            "definition": "Asymmetrical pose where weight shifts to one leg, creating natural stance",
+            "example": "Classical Greek and Renaissance sculptures"
+        }
+    ]
+}

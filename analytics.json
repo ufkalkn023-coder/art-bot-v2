@@ -1,0 +1,33 @@
+{
+  "tweets": [
+    {
+      "timestamp": "2025-11-22T00:58:21.696Z",
+      "artist": "Giambologna (Flemish, active Italy, 1529–1608)",
+      "title": "Fata Morgana",
+      "museum": "Cleveland Museum of Art",
+      "date": "c. 1572",
+      "tweetLength": 145,
+      "link": "https://clevelandart.org/art/2025.18"
+    },
+    {
+      "timestamp": "2025-11-22T01:10:33.307Z",
+      "artist": "Chimú",
+      "title": "Ceremonial Knife (Tumi)",
+      "museum": "Art Institute of Chicago",
+      "date": "1100–1470",
+      "tweetLength": 118,
+      "link": "https://www.artic.edu/artworks/18757"
+    }
+  ],
+  "stats": {
+    "totalTweets": 2,
+    "artistCount": {
+      "Giambologna (Flemish, active Italy, 1529–1608)": 1,
+      "Chimú": 1
+    },
+    "museumCount": {
+      "Cleveland Museum of Art": 1,
+      "Art Institute of Chicago": 1
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+    "techniques": [
+        {
+            "name": "Rule of Thirds",
+            "explanation": "Divide canvas into 9 equal parts, place key elements at intersections",
+            "short": "📐 Rule of Thirds: Grid of 9 for balance"
+        },
+        {
+            "name": "Golden Ratio",
+            "explanation": "Mathematical ratio (1:1.618) found in nature, creates pleasing compositions",
+            "short": "📐 Golden Ratio: Nature's perfect proportion"
+        },
+        {
+            "name": "Leading Lines",
+            "explanation": "Lines that guide viewer's eye through the composition",
+            "short": "📐 Leading Lines: Guide the eye"
+        },
+        {
+            "name": "Symmetry",
+            "explanation": "Balanced composition with mirrored elements",
+            "short": "📐 Symmetry: Perfect balance"
+        },
+        {
+            "name": "Asymmetry",
+            "explanation": "Unbalanced composition that creates dynamic tension",
+            "short": "📐 Asymmetry: Dynamic imbalance"
+        },
+        {
+            "name": "Framing",
+            "explanation": "Using elements to create a frame within the composition",
+            "short": "📐 Framing: Frame within frame"
+        },
+        {
+            "name": "Negative Space",
+            "explanation": "Empty space around subject that defines its shape",
+            "short": "📐 Negative Space: Empty defines full"
+        },
+        {
+            "name": "Focal Point",
+            "explanation": "Main area of interest that draws the eye first",
+            "short": "📐 Focal Point: Where eye goes first"
+        },
+        {
+            "name": "Triangular Composition",
+            "explanation": "Arranging elements in triangle for stability",
+            "short": "📐 Triangle: Stable composition"
+        },
+        {
+            "name": "Diagonal Lines",
+            "explanation": "Create movement and energy in composition",
+            "short": "📐 Diagonals: Create movement"
+        },
+        {
+            "name": "Repetition",
+            "explanation": "Repeating elements create rhythm and unity",
+            "short": "📐 Repetition: Creates rhythm"
+        },
+        {
+            "name": "Contrast",
+            "explanation": "Opposing elements create visual interest",
+            "short": "📐 Contrast: Opposites attract"
+        },
+        {
+            "name": "Depth",
+            "explanation": "Creating illusion of 3D space on 2D surface",
+            "short": "📐 Depth: 3D on 2D surface"
+        },
+        {
+            "name": "Balance",
+            "explanation": "Equal visual weight on both sides",
+            "short": "📐 Balance: Equal visual weight"
+        },
+        {
+            "name": "Movement",
+            "explanation": "Guiding viewer's eye through the artwork",
+            "short": "📐 Movement: Eye flow through art"
+        }
+    ]
+}

@@ -1,0 +1,586 @@
+{
+    "general": [
+        "#Art",
+        "#ArtHistory",
+        "#Painting",
+        "#Masterpiece",
+        "#Museum",
+        "#FineArt",
+        "#ArtLovers",
+        "#ArtDaily"
+    ],
+    "movements": {
+        "Impressionism": [
+            "#Impressionism",
+            "#Impressionist",
+            "#ModernArt"
+        ],
+        "Renaissance": [
+            "#Renaissance",
+            "#ClassicalArt",
+            "#ItalianArt"
+        ],
+        "Baroque": [
+            "#Baroque",
+            "#BaroqueArt",
+            "#GoldenAge"
+        ],
+        "Surrealism": [
+            "#Surrealism",
+            "#Surrealist",
+            "#DreamArt"
+        ],
+        "Expressionism": [
+            "#Expressionism",
+            "#Expressionist",
+            "#ModernArt"
+        ],
+        "Cubism": [
+            "#Cubism",
+            "#Cubist",
+            "#ModernArt"
+        ],
+        "Abstract": [
+            "#AbstractArt",
+            "#Abstract",
+            "#ContemporaryArt"
+        ],
+        "Modernism": [
+            "#ModernArt",
+            "#Modernism",
+            "#20thCentury"
+        ],
+        "Romanticism": [
+            "#Romanticism",
+            "#Romantic",
+            "#19thCentury"
+        ],
+        "Realism": [
+            "#Realism",
+            "#Realist",
+            "#NaturalArt"
+        ]
+    },
+    "artists": {
+        "Van Gogh": [
+            "#VanGogh",
+            "#PostImpressionism"
+        ],
+        "Picasso": [
+            "#Picasso",
+            "#Cubism"
+        ],
+        "Monet": [
+            "#Monet",
+            "#Impressionism"
+        ],
+        "Dalí": [
+            "#Dali",
+            "#Surrealism"
+        ],
+        "Rembrandt": [
+            "#Rembrandt",
+            "#DutchMasters"
+        ],
+        "Michelangelo": [
+            "#Michelangelo",
+            "#Renaissance"
+        ],
+        "Leonardo": [
+            "#DaVinci",
+            "#Renaissance"
+        ],
+        "Frida": [
+            "#FridaKahlo",
+            "#MexicanArt"
+        ],
+        "Warhol": [
+            "#AndyWarhol",
+            "#PopArt"
+        ],
+        "Kandinsky": [
+            "#Kandinsky",
+            "#AbstractArt"
+        ]
+    },
+    "museums": {
+        "Art Institute of Chicago": [
+            "#ChicagoArt",
+            "#AIC"
+        ],
+        "Cleveland Museum of Art": [
+            "#ClevelandArt",
+            "#CMA"
+        ],
+        "Metropolitan Museum": [
+            "#MetMuseum",
+            "#TheMet"
+        ]
+    },
+    "techniques": {
+        "Oil": [
+            "#OilPainting",
+            "#OilOnCanvas",
+            "#Painting"
+        ],
+        "Watercolor": [
+            "#Watercolor",
+            "#Aquarelle",
+            "#Watercolour"
+        ],
+        "Sculpture": [
+            "#Sculpture",
+            "#Statue",
+            "#3DArt"
+        ],
+        "Drawing": [
+            "#Drawing",
+            "#Sketch",
+            "#PencilArt"
+        ],
+        "Print": [
+            "#Printmaking",
+            "#Etching",
+            "#Lithography"
+        ],
+        "Photography": [
+            "#Photography",
+            "#FineArtPhotography",
+            "#PhotoArt"
+        ],
+        "Digital": [
+            "#DigitalArt",
+            "#NewMedia",
+            "#DigitalPainting"
+        ]
+    },
+    "subjects": {
+        "Portrait": [
+            "#Portrait",
+            "#Portraiture",
+            "#Face"
+        ],
+        "Landscape": [
+            "#Landscape",
+            "#NatureArt",
+            "#Scenery"
+        ],
+        "Still Life": [
+            "#StillLife",
+            "#NatureMorte",
+            "#ObjectArt"
+        ],
+        "Abstract": [
+            "#Abstract",
+            "#NonObjective",
+            "#Forms"
+        ],
+        "Figure": [
+            "#FigurativeArt",
+            "#HumanFigure",
+            "#BodyArt"
+        ],
+        "Animals": [
+            "#AnimalArt",
+            "#WildlifeArt",
+            "#Creatures"
+        ],
+        "Cityscape": [
+            "#Cityscape",
+            "#UrbanArt",
+            "#Architecture"
+        ]
+    },
+    "colors": {
+        "Blue": [
+            "#BlueArt",
+            "#ShadesOfBlue",
+            "#Cerulean"
+        ],
+        "Red": [
+            "#RedArt",
+            "#Crimson",
+            "#Passion"
+        ],
+        "Yellow": [
+            "#YellowArt",
+            "#Golden",
+            "#Sunshine"
+        ],
+        "Green": [
+            "#GreenArt",
+            "#NatureColors",
+            "#Verdant"
+        ],
+        "Black": [
+            "#BlackAndWhite",
+            "#Monochrome",
+            "#Noir"
+        ],
+        "Colorful": [
+            "#ColorfulArt",
+            "#Vibrant",
+            "#Rainbow"
+        ]
+    },
+    "moods": {
+        "Dark": [
+            "#DarkArt",
+            "#Melancholy",
+            "#Gothic",
+            "#Mysterious",
+            "#Shadowy",
+            "#Moody",
+            "#Somber",
+            "#Eerie",
+            "#Haunting",
+            "#Nocturnal"
+        ],
+        "Bright": [
+            "#BrightArt",
+            "#Joyful",
+            "#HappyArt",
+            "#Vibrant",
+            "#Radiant",
+            "#Sunny",
+            "#Cheerful",
+            "#Luminous",
+            "#Glowing",
+            "#Optimistic"
+        ],
+        "Calm": [
+            "#CalmArt",
+            "#Serenity",
+            "#Peaceful",
+            "#Tranquil",
+            "#Zen",
+            "#Quiet",
+            "#Stillness",
+            "#Meditative",
+            "#Relaxing",
+            "#Soothing"
+        ],
+        "Dynamic": [
+            "#DynamicArt",
+            "#Movement",
+            "#Energy",
+            "#Action",
+            "#Powerful",
+            "#Intense",
+            "#Dramatic",
+            "#Explosive",
+            "#Kinetic",
+            "#Lively"
+        ]
+    },
+    "mediums": {
+        "Painting": [
+            "#Painting",
+            "#OilPainting",
+            "#AcrylicPainting",
+            "#Watercolor",
+            "#Gouache",
+            "#Tempera",
+            "#Fresco",
+            "#Mural",
+            "#Canvas",
+            "#Easel"
+        ],
+        "Sculpture": [
+            "#Sculpture",
+            "#Statue",
+            "#Bronze",
+            "#Marble",
+            "#Clay",
+            "#Ceramics",
+            "#Installation",
+            "#Assemblage",
+            "#Carving",
+            "#Relief"
+        ],
+        "Drawing": [
+            "#Drawing",
+            "#Sketch",
+            "#Charcoal",
+            "#Pastel",
+            "#Ink",
+            "#Graphite",
+            "#Illustration",
+            "#Doodle",
+            "#Drafting",
+            "#Sketchbook"
+        ],
+        "Printmaking": [
+            "#Printmaking",
+            "#Etching",
+            "#Lithograph",
+            "#Woodcut",
+            "#Screenprint",
+            "#Linocut",
+            "#Engraving",
+            "#Monotype",
+            "#Silkscreen",
+            "#Intaglio"
+        ],
+        "Photography": [
+            "#Photography",
+            "#BlackAndWhite",
+            "#Portrait",
+            "#LandscapePhoto",
+            "#StreetPhotography",
+            "#FineArtPhoto",
+            "#Analog",
+            "#DigitalPhoto",
+            "#Darkroom",
+            "#Exposure"
+        ],
+        "Digital": [
+            "#DigitalArt",
+            "#NewMedia",
+            "#GenerativeArt",
+            "#PixelArt",
+            "#3DModeling",
+            "#VRArt",
+            "#ARArt",
+            "#GlitchArt",
+            "#NetArt",
+            "#CodeArt"
+        ]
+    },
+    "styles": {
+        "Realism": [
+            "#Realism",
+            "#Hyperrealism",
+            "#Photorealism",
+            "#Naturalism",
+            "#Representational",
+            "#Figurative",
+            "#TrueToLife",
+            "#Detailed",
+            "#Precise",
+            "#Lifelike"
+        ],
+        "Abstract": [
+            "#Abstract",
+            "#Abstraction",
+            "#NonObjective",
+            "#Geometric",
+            "#Organic",
+            "#ColorField",
+            "#Minimalism",
+            "#Gestural",
+            "#Expressionist",
+            "#Formless"
+        ],
+        "Impressionism": [
+            "#Impressionism",
+            "#LightAndColor",
+            "#PleinAir",
+            "#Brushwork",
+            "#Atmospheric",
+            "#Fleeting",
+            "#Moment",
+            "#Outdoor",
+            "#Vibrant",
+            "#Texture"
+        ],
+        "Surrealism": [
+            "#Surrealism",
+            "#Dreamlike",
+            "#Bizarre",
+            "#Unconscious",
+            "#Fantasy",
+            "#Imagination",
+            "#Subconscious",
+            "#Absurd",
+            "#Magical",
+            "#Otherworldly"
+        ],
+        "PopArt": [
+            "#PopArt",
+            "#PopularCulture",
+            "#MassMedia",
+            "#Consumerism",
+            "#Irony",
+            "#Bold",
+            "#Graphic",
+            "#Commercial",
+            "#Iconic",
+            "#Kitsch"
+        ],
+        "StreetArt": [
+            "#StreetArt",
+            "#Graffiti",
+            "#UrbanArt",
+            "#Muralism",
+            "#PublicArt",
+            "#Stencil",
+            "#SprayPaint",
+            "#Tagging",
+            "#Vandalism",
+            "#CityArt"
+        ]
+    },
+    "themes": {
+        "Nature": [
+            "#NatureArt",
+            "#Landscape",
+            "#Seascape",
+            "#Botanical",
+            "#Floral",
+            "#Wildlife",
+            "#Forest",
+            "#Mountain",
+            "#Sky",
+            "#Ocean"
+        ],
+        "Portrait": [
+            "#Portrait",
+            "#SelfPortrait",
+            "#Face",
+            "#Headshot",
+            "#Profile",
+            "#Gaze",
+            "#Expression",
+            "#Identity",
+            "#Character",
+            "#Persona"
+        ],
+        "History": [
+            "#HistoryPainting",
+            "#Mythology",
+            "#Legend",
+            "#Biblical",
+            "#Historical",
+            "#Narrative",
+            "#Storytelling",
+            "#Epic",
+            "#Past",
+            "#Tradition"
+        ],
+        "DailyLife": [
+            "#GenrePainting",
+            "#DailyLife",
+            "#Domestic",
+            "#Interior",
+            "#Scene",
+            "#Everyday",
+            "#Ordinary",
+            "#Routine",
+            "#Candid",
+            "#Observational"
+        ],
+        "Fantasy": [
+            "#FantasyArt",
+            "#Mythical",
+            "#Legendary",
+            "#Magic",
+            "#Creatures",
+            "#Dragons",
+            "#Fairytale",
+            "#SciFi",
+            "#Futuristic",
+            "#Imaginary"
+        ]
+    },
+    "elements": {
+        "Color": [
+            "#ColorTheory",
+            "#Palette",
+            "#Hue",
+            "#Saturation",
+            "#Contrast",
+            "#Harmony",
+            "#Monochrome",
+            "#Polychrome",
+            "#Pigment",
+            "#Tone"
+        ],
+        "Line": [
+            "#LineArt",
+            "#Contour",
+            "#Gesture",
+            "#Hatching",
+            "#CrossHatching",
+            "#Linear",
+            "#Outline",
+            "#Stroke",
+            "#MarkMaking",
+            "#Calligraphy"
+        ],
+        "Shape": [
+            "#Shape",
+            "#Form",
+            "#Volume",
+            "#Mass",
+            "#Geometry",
+            "#OrganicShapes",
+            "#Silhouette",
+            "#NegativeSpace",
+            "#PositiveSpace",
+            "#Structure"
+        ],
+        "Texture": [
+            "#Texture",
+            "#Surface",
+            "#Impasto",
+            "#Smooth",
+            "#Rough",
+            "#Tactile",
+            "#Pattern",
+            "#Grain",
+            "#Finish",
+            "#Material"
+        ],
+        "Light": [
+            "#LightAndShadow",
+            "#Chiaroscuro",
+            "#Tenebrism",
+            "#Illumination",
+            "#Reflection",
+            "#Shadow",
+            "#Highlight",
+            "#Glow",
+            "#Radiance",
+            "#Darkness"
+        ]
+    },
+    "days": {
+        "Monday": [
+            "#ArtMonday",
+            "#MondayMotivation",
+            "#MuseumMonday",
+            "#MasterpieceMonday"
+        ],
+        "Tuesday": [
+            "#ArtTuesday",
+            "#TuesdayThoughts",
+            "#PortraitTuesday"
+        ],
+        "Wednesday": [
+            "#ArtWednesday",
+            "#WednesdayWisdom",
+            "#WildlifeWednesday"
+        ],
+        "Thursday": [
+            "#ArtThursday",
+            "#ThrowbackThursday",
+            "#TBT"
+        ],
+        "Friday": [
+            "#ArtFriday",
+            "#FridayFeeling",
+            "#FlashbackFriday"
+        ],
+        "Saturday": [
+            "#ArtSaturday",
+            "#SaturdayVibes",
+            "#SculptureSaturday"
+        ],
+        "Sunday": [
+            "#ArtSunday",
+            "#SundayFunday",
+            "#SketchSunday"
+        ]
+    }
+}

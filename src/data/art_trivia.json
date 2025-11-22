@@ -1,0 +1,408 @@
+{
+    "trivia": [
+        {
+            "fact": "The Mona Lisa has no eyebrows - it was fashionable in Renaissance Florence to shave them",
+            "short": "💡 The Mona Lisa has no eyebrows!"
+        },
+        {
+            "fact": "Van Gogh only sold one painting during his lifetime",
+            "short": "💡 Van Gogh sold only 1 painting in his life"
+        },
+        {
+            "fact": "Picasso's full name has 23 words",
+            "short": "💡 Picasso's full name has 23 words"
+        },
+        {
+            "fact": "The Scream was painted on cardboard, not canvas",
+            "short": "💡 The Scream was painted on cardboard"
+        },
+        {
+            "fact": "Leonardo da Vinci could write with one hand and draw with the other simultaneously",
+            "short": "💡 Da Vinci could write & draw simultaneously"
+        },
+        {
+            "fact": "Monet's Water Lilies series contains over 250 paintings",
+            "short": "💡 Monet painted 250+ Water Lilies"
+        },
+        {
+            "fact": "The Starry Night was painted from memory in an asylum",
+            "short": "💡 Starry Night painted in an asylum"
+        },
+        {
+            "fact": "Frida Kahlo painted 55 self-portraits",
+            "short": "💡 Frida painted 55 self-portraits"
+        },
+        {
+            "fact": "The Girl with a Pearl Earring is also called the 'Mona Lisa of the North'",
+            "short": "💡 Pearl Earring = 'Mona Lisa of North'"
+        },
+        {
+            "fact": "Michelangelo painted the Sistine Chapel ceiling while standing, not lying down",
+            "short": "💡 Sistine Chapel painted standing up"
+        },
+        {
+            "fact": "Banksy's identity remains unknown to this day",
+            "short": "💡 Banksy's identity still unknown"
+        },
+        {
+            "fact": "The most expensive painting ever sold is Salvator Mundi at $450 million",
+            "short": "💡 Most expensive: Salvator Mundi $450M"
+        },
+        {
+            "fact": "Rembrandt painted over 90 self-portraits",
+            "short": "💡 Rembrandt: 90+ self-portraits"
+        },
+        {
+            "fact": "The Louvre is the world's largest art museum with 380,000 objects",
+            "short": "💡 Louvre has 380,000 artworks"
+        },
+        {
+            "fact": "Guernica was painted in just 35 days",
+            "short": "💡 Guernica painted in 35 days"
+        },
+        {
+            "fact": "Salvador Dalí designed the Chupa Chups logo",
+            "short": "💡 Dalí designed Chupa Chups logo"
+        },
+        {
+            "fact": "The Birth of Venus depicts the goddess emerging from a giant scallop shell",
+            "short": "💡 Venus born from a scallop shell"
+        },
+        {
+            "fact": "Edvard Munch created 4 versions of The Scream",
+            "short": "💡 4 versions of The Scream exist"
+        },
+        {
+            "fact": "Vermeer only painted 34 known works in his lifetime",
+            "short": "💡 Vermeer: only 34 known paintings"
+        },
+        {
+            "fact": "The Night Watch is actually a daytime scene",
+            "short": "💡 Night Watch is actually daytime"
+        },
+        {
+            "fact": "Monet was nearly blind when he painted his famous water lilies",
+            "short": "💡 Monet painted lilies while nearly blind"
+        },
+        {
+            "fact": "Picasso's first word was 'piz' - short for 'lápiz' (pencil in Spanish)",
+            "short": "💡 Picasso's first word: 'pencil'"
+        },
+        {
+            "fact": "The Persistence of Memory's melting clocks were inspired by melting cheese",
+            "short": "💡 Dalí's clocks inspired by cheese"
+        },
+        {
+            "fact": "Caravaggio killed a man and fled Rome",
+            "short": "💡 Caravaggio was a fugitive murderer"
+        },
+        {
+            "fact": "Kandinsky believed colors had sounds",
+            "short": "💡 Kandinsky heard colors as sounds"
+        },
+        {
+            "fact": "The Last Supper took 3 years to complete",
+            "short": "💡 Last Supper took 3 years"
+        },
+        {
+            "fact": "Botticelli burned many of his own paintings during the Bonfire of the Vanities",
+            "short": "💡 Botticelli burned his own art"
+        },
+        {
+            "fact": "Andy Warhol created a portrait of himself every year",
+            "short": "💡 Warhol: yearly self-portraits"
+        },
+        {
+            "fact": "Klimt used real gold leaf in The Kiss",
+            "short": "💡 The Kiss contains real gold"
+        },
+        {
+            "fact": "Rothko cried while painting his color field works",
+            "short": "💡 Rothko cried while painting"
+        },
+        {
+            "fact": "Hokusai created The Great Wave when he was 70",
+            "short": "💡 Great Wave painted at age 70"
+        },
+        {
+            "fact": "Basquiat started as a graffiti artist under the name SAMO",
+            "short": "💡 Basquiat was graffiti artist SAMO"
+        },
+        {
+            "fact": "Keith Haring started by drawing in NYC subway stations",
+            "short": "💡 Keith Haring drew in subways"
+        },
+        {
+            "fact": "Yayoi Kusama has lived voluntarily in a psychiatric hospital since 1977",
+            "short": "💡 Kusama lives in a hospital"
+        },
+        {
+            "fact": "The Thinker was originally part of a larger work called The Gates of Hell",
+            "short": "💡 The Thinker part of Gates of Hell"
+        },
+        {
+            "fact": "Grant Wood's American Gothic depicts his dentist and sister",
+            "short": "💡 American Gothic: Dentist & sister"
+        },
+        {
+            "fact": "Georgia O'Keeffe painted over 200 flowers",
+            "short": "💡 O'Keeffe painted 200+ flowers"
+        },
+        {
+            "fact": "Duchamp's Fountain is just a signed urinal",
+            "short": "💡 Duchamp's Fountain = Urinal"
+        },
+        {
+            "fact": "Renoir painted with brushes tied to his wrists due to arthritis",
+            "short": "💡 Renoir tied brushes to wrists"
+        },
+        {
+            "fact": "Matisse created paper cut-outs when he could no longer paint",
+            "short": "💡 Matisse made paper cut-outs"
+        },
+        {
+            "fact": "Seurat's A Sunday Afternoon took 2 years and millions of dots",
+            "short": "💡 Seurat: Millions of dots"
+        },
+        {
+            "fact": "Hopper's Nighthawks was inspired by a diner in Greenwich Village",
+            "short": "💡 Nighthawks inspired by NYC diner"
+        },
+        {
+            "fact": "Magritte's mother committed suicide, influencing his veiled faces",
+            "short": "💡 Magritte's veiled faces origin"
+        },
+        {
+            "fact": "Goya painted his 'Black Paintings' directly onto the walls of his house",
+            "short": "💡 Goya painted on his walls"
+        },
+        {
+            "fact": "Ai Weiwei dropped a 2000-year-old Han Dynasty urn for art",
+            "short": "💡 Ai Weiwei dropped ancient urn"
+        },
+        {
+            "fact": "Marina Abramović stared at strangers for 736 hours at MoMA",
+            "short": "💡 Abramović stared for 736 hours"
+        },
+        {
+            "fact": "Jeff Koons' Rabbit sold for $91.1 million",
+            "short": "💡 Koons' Rabbit sold for $91M"
+        },
+        {
+            "fact": "Damien Hirst preserved a shark in formaldehyde",
+            "short": "💡 Hirst preserved a shark"
+        },
+        {
+            "fact": "Tracey Emin's 'My Bed' was her actual messy bed",
+            "short": "💡 Emin's art was her messy bed"
+        },
+        {
+            "fact": "Bansky's Girl with Balloon shredded itself after being sold",
+            "short": "💡 Banksy painting shredded itself"
+        },
+        {
+            "fact": "Cezanne painted Mont Sainte-Victoire over 60 times",
+            "short": "💡 Cezanne painted mountain 60x"
+        },
+        {
+            "fact": "Degas was an anti-Semite who refused to hire Jewish models",
+            "short": "💡 Degas was controversial"
+        },
+        {
+            "fact": "Raphael died on his 37th birthday",
+            "short": "💡 Raphael died on his birthday"
+        },
+        {
+            "fact": "Donatello's David was the first freestanding nude sculpture since antiquity",
+            "short": "💡 Donatello's David: First nude since antiquity"
+        },
+        {
+            "fact": "Géricault kept severed limbs in his studio to study for Raft of the Medusa",
+            "short": "💡 Géricault studied severed limbs"
+        },
+        {
+            "fact": "Whistler sued John Ruskin for libel after a bad review and won one farthing",
+            "short": "💡 Whistler won 1 farthing in lawsuit"
+        },
+        {
+            "fact": "El Greco's elongated figures may have been due to astigmatism",
+            "short": "💡 El Greco might have had astigmatism"
+        },
+        {
+            "fact": "Titian died of the plague in his late 80s",
+            "short": "💡 Titian died of plague"
+        },
+        {
+            "fact": "Rubens was a diplomat and spy as well as a painter",
+            "short": "💡 Rubens was a spy"
+        },
+        {
+            "fact": "Velázquez painted 'Las Meninas' four years before he died",
+            "short": "💡 Las Meninas painted near death"
+        },
+        {
+            "fact": "Bernini was a child prodigy who carved stone at age 8",
+            "short": "💡 Bernini carved stone at 8"
+        },
+        {
+            "fact": "Gainsborough preferred landscapes but made his money from portraits",
+            "short": "💡 Gainsborough preferred landscapes"
+        },
+        {
+            "fact": "Turner had himself tied to a ship's mast to experience a storm",
+            "short": "💡 Turner tied to mast for storm"
+        },
+        {
+            "fact": "Constable's cloud studies are meteorologically accurate",
+            "short": "💡 Constable's clouds are accurate"
+        },
+        {
+            "fact": "Courbet was imprisoned for his role in the Paris Commune",
+            "short": "💡 Courbet was imprisoned"
+        },
+        {
+            "fact": "Millet's The Angelus was attacked by a man with a knife",
+            "short": "💡 The Angelus attacked with knife"
+        },
+        {
+            "fact": "Rodin's The Kiss was originally part of The Gates of Hell",
+            "short": "💡 The Kiss part of Gates of Hell"
+        },
+        {
+            "fact": "Toulouse-Lautrec broke both legs as a teen, stunting his growth",
+            "short": "💡 Toulouse-Lautrec's growth stunted"
+        },
+        {
+            "fact": "Modigliani died penniless at age 35",
+            "short": "💡 Modigliani died poor at 35"
+        },
+        {
+            "fact": "Egon Schiele died of the Spanish Flu three days after his wife",
+            "short": "💡 Schiele died of Spanish Flu"
+        },
+        {
+            "fact": "Max Ernst invented the technique of frottage (rubbing)",
+            "short": "💡 Ernst invented frottage"
+        },
+        {
+            "fact": "Joan Miró sometimes painted while hallucinating from hunger",
+            "short": "💡 Miró painted while hungry"
+        },
+        {
+            "fact": "Alexander Calder invented the mobile",
+            "short": "💡 Calder invented the mobile"
+        },
+        {
+            "fact": "Lucian Freud painted Queen Elizabeth II",
+            "short": "💡 Freud painted the Queen"
+        },
+        {
+            "fact": "David Hockney uses an iPad to create art",
+            "short": "💡 Hockney uses iPad for art"
+        },
+        {
+            "fact": "Chuck Close paints massive portraits despite having face blindness",
+            "short": "💡 Chuck Close has face blindness"
+        },
+        {
+            "fact": "Christo and Jeanne-Claude wrapped the Reichstag in fabric",
+            "short": "💡 Christo wrapped the Reichstag"
+        },
+        {
+            "fact": "Anish Kapoor owns the exclusive rights to Vantablack",
+            "short": "💡 Kapoor owns Vantablack rights"
+        },
+        {
+            "fact": "Maurizio Cattelan taped a banana to a wall and sold it for $120k",
+            "short": "💡 Cattelan's $120k banana"
+        },
+        {
+            "fact": "Yoko Ono allowed audience members to cut off her clothing",
+            "short": "💡 Ono's Cut Piece performance"
+        },
+        {
+            "fact": "Nam June Paik is considered the father of video art",
+            "short": "💡 Paik: Father of video art"
+        },
+        {
+            "fact": "Jean Tinguely created self-destroying machines",
+            "short": "💡 Tinguely's self-destroying art"
+        },
+        {
+            "fact": "Yves Klein patented his own color, International Klein Blue",
+            "short": "💡 Yves Klein patented a color"
+        },
+        {
+            "fact": "Niki de Saint Phalle created 'Shooting Paintings' by firing a gun at them",
+            "short": "💡 Saint Phalle shot her paintings"
+        },
+        {
+            "fact": "Louise Nevelson built massive sculptures from found wood scraps",
+            "short": "💡 Nevelson used wood scraps"
+        },
+        {
+            "fact": "Joseph Beuys spent three days in a room with a coyote",
+            "short": "💡 Beuys lived with a coyote"
+        },
+        {
+            "fact": "Cindy Sherman photographs herself as different characters",
+            "short": "💡 Sherman photographs herself"
+        },
+        {
+            "fact": "Barbara Kruger uses advertising styles for feminist art",
+            "short": "💡 Kruger uses ad styles"
+        },
+        {
+            "fact": "Jenny Holzer projects text onto buildings",
+            "short": "💡 Holzer projects text"
+        },
+        {
+            "fact": "Kara Walker uses silhouettes to explore race and history",
+            "short": "💡 Walker uses silhouettes"
+        },
+        {
+            "fact": "Kehinde Wiley painted Barack Obama's official portrait",
+            "short": "💡 Wiley painted Obama"
+        },
+        {
+            "fact": "Shirin Neshat explores gender in Islamic culture through photography",
+            "short": "💡 Neshat explores gender"
+        },
+        {
+            "fact": "Takashi Murakami coined the term 'Superflat'",
+            "short": "💡 Murakami coined 'Superflat'"
+        },
+        {
+            "fact": "Yoshitomo Nara is famous for his sinister-looking children",
+            "short": "💡 Nara's sinister children"
+        },
+        {
+            "fact": "Zaha Hadid was the first woman to win the Pritzker Architecture Prize",
+            "short": "💡 Hadid won Pritzker Prize"
+        },
+        {
+            "fact": "Frank Gehry designed the Guggenheim Museum Bilbao",
+            "short": "💡 Gehry designed Guggenheim Bilbao"
+        },
+        {
+            "fact": "I.M. Pei designed the Louvre Pyramid",
+            "short": "💡 Pei designed Louvre Pyramid"
+        },
+        {
+            "fact": "Maya Lin designed the Vietnam Veterans Memorial at age 21",
+            "short": "💡 Lin designed memorial at 21"
+        },
+        {
+            "fact": "Annie Leibovitz was the last person to photograph John Lennon",
+            "short": "💡 Leibovitz photographed Lennon"
+        },
+        {
+            "fact": "Ansel Adams was an environmental activist",
+            "short": "💡 Adams was an activist"
+        },
+        {
+            "fact": "Dorothea Lange's 'Migrant Mother' is an icon of the Great Depression",
+            "short": "💡 Lange's Migrant Mother"
+        }
+    ]
+}

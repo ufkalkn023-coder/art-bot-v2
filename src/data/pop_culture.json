@@ -1,0 +1,54 @@
+{
+    "connections": [
+        {
+            "artwork": "The Scream",
+            "reference": "Home Alone movie poster",
+            "short": "🎬 The Scream inspired Home Alone poster"
+        },
+        {
+            "artwork": "The Birth of Venus",
+            "reference": "Botticelli's Venus appears in countless ads",
+            "short": "🎬 Venus = Most parodied painting"
+        },
+        {
+            "artwork": "American Gothic",
+            "reference": "Parodied in The Simpsons, Desperate Housewives",
+            "short": "🎬 American Gothic in The Simpsons"
+        },
+        {
+            "artwork": "The Great Wave",
+            "reference": "Emoji wave 🌊 design inspiration",
+            "short": "🎬 Great Wave inspired wave emoji"
+        },
+        {
+            "artwork": "Starry Night",
+            "reference": "Doctor Who episode 'Vincent and the Doctor'",
+            "short": "🎬 Starry Night in Doctor Who"
+        },
+        {
+            "artwork": "Girl with a Pearl Earring",
+            "reference": "2003 film starring Scarlett Johansson",
+            "short": "🎬 Pearl Earring became a movie"
+        },
+        {
+            "artwork": "The Last Supper",
+            "reference": "Referenced in The Da Vinci Code",
+            "short": "🎬 Last Supper in Da Vinci Code"
+        },
+        {
+            "artwork": "Nighthawks",
+            "reference": "Inspired Blade Runner's diner scene",
+            "short": "🎬 Nighthawks inspired Blade Runner"
+        },
+        {
+            "artwork": "The Persistence of Memory",
+            "reference": "Referenced in countless surreal films",
+            "short": "🎬 Dalí's clocks = Surrealism icon"
+        },
+        {
+            "artwork": "Guernica",
+            "reference": "Anti-war symbol in modern protests",
+            "short": "🎬 Guernica = Modern protest symbol"
+        }
+    ]
+}

@@ -1,0 +1,124 @@
+{
+    "artists": [
+        {
+            "name": "Vincent van Gogh",
+            "birthDate": "03-30",
+            "birthYear": 1853,
+            "deathYear": 1890,
+            "nationality": "Dutch",
+            "movement": "Post-Impressionism"
+        },
+        {
+            "name": "Pablo Picasso",
+            "birthDate": "10-25",
+            "birthYear": 1881,
+            "deathYear": 1973,
+            "nationality": "Spanish",
+            "movement": "Cubism"
+        },
+        {
+            "name": "Leonardo da Vinci",
+            "birthDate": "04-15",
+            "birthYear": 1452,
+            "deathYear": 1519,
+            "nationality": "Italian",
+            "movement": "Renaissance"
+        },
+        {
+            "name": "Claude Monet",
+            "birthDate": "11-14",
+            "birthYear": 1840,
+            "deathYear": 1926,
+            "nationality": "French",
+            "movement": "Impressionism"
+        },
+        {
+            "name": "Frida Kahlo",
+            "birthDate": "07-06",
+            "birthYear": 1907,
+            "deathYear": 1954,
+            "nationality": "Mexican",
+            "movement": "Surrealism"
+        },
+        {
+            "name": "Rembrandt van Rijn",
+            "birthDate": "07-15",
+            "birthYear": 1606,
+            "deathYear": 1669,
+            "nationality": "Dutch",
+            "movement": "Baroque"
+        },
+        {
+            "name": "Salvador Dalí",
+            "birthDate": "05-11",
+            "birthYear": 1904,
+            "deathYear": 1989,
+            "nationality": "Spanish",
+            "movement": "Surrealism"
+        },
+        {
+            "name": "Michelangelo",
+            "birthDate": "03-06",
+            "birthYear": 1475,
+            "deathYear": 1564,
+            "nationality": "Italian",
+            "movement": "Renaissance"
+        },
+        {
+            "name": "Andy Warhol",
+            "birthDate": "08-06",
+            "birthYear": 1928,
+            "deathYear": 1987,
+            "nationality": "American",
+            "movement": "Pop Art"
+        },
+        {
+            "name": "Johannes Vermeer",
+            "birthDate": "10-31",
+            "birthYear": 1632,
+            "deathYear": 1675,
+            "nationality": "Dutch",
+            "movement": "Baroque"
+        },
+        {
+            "name": "Edvard Munch",
+            "birthDate": "12-12",
+            "birthYear": 1863,
+            "deathYear": 1944,
+            "nationality": "Norwegian",
+            "movement": "Expressionism"
+        },
+        {
+            "name": "Henri Matisse",
+            "birthDate": "12-31",
+            "birthYear": 1869,
+            "deathYear": 1954,
+            "nationality": "French",
+            "movement": "Fauvism"
+        },
+        {
+            "name": "Georgia O'Keeffe",
+            "birthDate": "11-15",
+            "birthYear": 1887,
+            "deathYear": 1986,
+            "nationality": "American",
+            "movement": "Modernism"
+        },
+        {
+            "name": "Wassily Kandinsky",
+            "birthDate": "12-16",
+            "birthYear": 1866,
+            "deathYear": 1944,
+            "nationality": "Russian",
+            "movement": "Abstract"
+        },
+        {
+            "name": "Gustav Klimt",
+            "birthDate": "07-14",
+            "birthYear": 1862,
+            "deathYear": 1918,
+            "nationality": "Austrian",
+            "movement": "Art Nouveau"
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+{
+    "schedule": {
+        "0": {
+            "day": "Sunday",
+            "theme": "Mixed",
+            "movements": [
+                "Any"
+            ],
+            "description": "A diverse selection from all periods and styles"
+        },
+        "1": {
+            "day": "Monday",
+            "theme": "Impressionism",
+            "movements": [
+                "Impressionism",
+                "Post-Impressionism"
+            ],
+            "description": "Light, color, and fleeting moments"
+        },
+        "2": {
+            "day": "Tuesday",
+            "theme": "Renaissance",
+            "movements": [
+                "Renaissance",
+                "Early Renaissance",
+                "High Renaissance"
+            ],
+            "description": "Classical beauty and humanism"
+        },
+        "3": {
+            "day": "Wednesday",
+            "theme": "Modern Art",
+            "movements": [
+                "Modernism",
+                "Abstract",
+                "Cubism",
+                "Fauvism"
+            ],
+            "description": "Breaking traditions and exploring new forms"
+        },
+        "4": {
+            "day": "Thursday",
+            "theme": "Baroque",
+            "movements": [
+                "Baroque",
+                "Rococo"
+            ],
+            "description": "Drama, emotion, and grandeur"
+        },
+        "5": {
+            "day": "Friday",
+            "theme": "Expressionism",
+            "movements": [
+                "Expressionism",
+                "Abstract Expressionism"
+            ],
+            "description": "Raw emotion and bold colors"
+        },
+        "6": {
+            "day": "Saturday",
+            "theme": "Surrealism",
+            "movements": [
+                "Surrealism",
+                "Symbolism",
+                "Dada"
+            ],
+            "description": "Dreams, imagination, and the subconscious"
+        }
+    }
+}

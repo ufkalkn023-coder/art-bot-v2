@@ -1,0 +1,23 @@
+{
+  "name": "artbot",
+  "version": "3.0.0",
+  "description": "Yapay Zeka Destekli Sanat Botu",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "migrate": "node scripts/migrate.js",
+    "db-stats": "node scripts/db-stats.js",
+    "diversity-report": "node scripts/diversity-report.js",
+    "monthly-report": "node scripts/monthly-report.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.1.0",
+    "axios": "^1.6.0",
+    "better-sqlite3": "^12.4.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.3.1",
+    "sharp": "^0.34.5",
+    "twitter-api-v2": "^1.15.0"
+  }
+}

@@ -1,0 +1,102 @@
+{
+    "days": [
+        {
+            "month": 1,
+            "day": 1,
+            "name": "New Year's Day",
+            "message": "🎊 Happy New Year! A fresh canvas awaits",
+            "priority": "high"
+        },
+        {
+            "month": 2,
+            "day": 14,
+            "name": "Valentine's Day",
+            "message": "💝 Love is in the art",
+            "priority": "medium"
+        },
+        {
+            "month": 3,
+            "day": 21,
+            "name": "World Poetry Day",
+            "message": "📖 Poetry & Art unite",
+            "priority": "low"
+        },
+        {
+            "month": 4,
+            "day": 15,
+            "name": "World Art Day",
+            "message": "🎨 Happy World Art Day!",
+            "priority": "high"
+        },
+        {
+            "month": 4,
+            "day": 18,
+            "name": "International Day for Monuments",
+            "message": "🏛️ Celebrating monuments & sites",
+            "priority": "medium"
+        },
+        {
+            "month": 5,
+            "day": 18,
+            "name": "International Museum Day",
+            "message": "🏛️ Happy International Museum Day!",
+            "priority": "high"
+        },
+        {
+            "month": 6,
+            "day": 21,
+            "name": "Summer Solstice",
+            "message": "☀️ Longest day of the year",
+            "priority": "low"
+        },
+        {
+            "month": 7,
+            "day": 4,
+            "name": "Independence Day (US)",
+            "message": "🇺🇸 Independence Day",
+            "priority": "medium"
+        },
+        {
+            "month": 9,
+            "day": 27,
+            "name": "World Tourism Day",
+            "message": "✈️ Explore art around the world",
+            "priority": "low"
+        },
+        {
+            "month": 10,
+            "day": 31,
+            "name": "Halloween",
+            "message": "🎃 Spooky art season",
+            "priority": "medium"
+        },
+        {
+            "month": 11,
+            "day": 1,
+            "name": "Day of the Dead",
+            "message": "💀 Día de los Muertos",
+            "priority": "medium"
+        },
+        {
+            "month": 12,
+            "day": 24,
+            "name": "Christmas Eve",
+            "message": "🎄 Merry Christmas Eve",
+            "priority": "high"
+        },
+        {
+            "month": 12,
+            "day": 25,
+            "name": "Christmas Day",
+            "message": "🎄 Merry Christmas!",
+            "priority": "high"
+        },
+        {
+            "month": 12,
+            "day": 31,
+            "name": "New Year's Eve",
+            "message": "🎆 Happy New Year's Eve!",
+            "priority": "high"
+        }
+    ]
+}

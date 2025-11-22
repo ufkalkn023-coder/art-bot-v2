@@ -1,0 +1,64 @@
+{
+    "facts": [
+        {
+            "fact": "Ultramarine blue was more expensive than gold in Renaissance times, made from lapis lazuli",
+            "short": "🎨 Blue was more expensive than gold"
+        },
+        {
+            "fact": "Purple was reserved for royalty because the dye came from rare sea snails",
+            "short": "🎨 Purple = Royal color (rare dye)"
+        },
+        {
+            "fact": "Red ochre is one of the oldest pigments, used in cave paintings 40,000 years ago",
+            "short": "🎨 Red ochre: 40,000 years old"
+        },
+        {
+            "fact": "White lead was toxic but widely used until the 20th century",
+            "short": "🎨 White lead was toxic but popular"
+        },
+        {
+            "fact": "Vermillion red came from toxic mercury sulfide",
+            "short": "🎨 Vermillion = Toxic mercury"
+        },
+        {
+            "fact": "Mummy brown was made from ground Egyptian mummies until the 1960s",
+            "short": "🎨 Mummy brown = Actual mummies!"
+        },
+        {
+            "fact": "Prussian blue was discovered accidentally in 1704",
+            "short": "🎨 Prussian blue: Accidental discovery"
+        },
+        {
+            "fact": "Yellow in medieval art often represented betrayal (Judas wore yellow)",
+            "short": "🎨 Yellow = Betrayal in medieval art"
+        },
+        {
+            "fact": "Green was difficult to make stable, so it's rare in old paintings",
+            "short": "🎨 Green was hard to make stable"
+        },
+        {
+            "fact": "Black in Renaissance art symbolized wealth and sophistication",
+            "short": "🎨 Black = Wealth in Renaissance"
+        },
+        {
+            "fact": "Gold leaf in paintings represents divine light and heaven",
+            "short": "🎨 Gold = Divine light"
+        },
+        {
+            "fact": "Cadmium yellow is toxic and banned in some countries",
+            "short": "🎨 Cadmium yellow is toxic"
+        },
+        {
+            "fact": "Indigo blue comes from plants and was a major trade commodity",
+            "short": "🎨 Indigo: Plant-based blue"
+        },
+        {
+            "fact": "Titanium white replaced toxic lead white in the 1920s",
+            "short": "🎨 Titanium white: Safe alternative"
+        },
+        {
+            "fact": "Complementary colors create the strongest contrast",
+            "short": "🎨 Complementary colors = Max contrast"
+        }
+    ]
+}

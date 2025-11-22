@@ -1,0 +1,79 @@
+{
+    "symbols": [
+        {
+            "symbol": "Skull",
+            "meaning": "Mortality, vanitas, reminder of death",
+            "short": "🔍 Skull = Mortality reminder"
+        },
+        {
+            "symbol": "Apple",
+            "meaning": "Temptation, sin, knowledge (Garden of Eden)",
+            "short": "🔍 Apple = Temptation & knowledge"
+        },
+        {
+            "symbol": "Dog",
+            "meaning": "Loyalty, fidelity, companionship",
+            "short": "🔍 Dog = Loyalty & fidelity"
+        },
+        {
+            "symbol": "Lily",
+            "meaning": "Purity, virginity, resurrection",
+            "short": "🔍 Lily = Purity & virginity"
+        },
+        {
+            "symbol": "Rose",
+            "meaning": "Love, passion, beauty, Virgin Mary",
+            "short": "🔍 Rose = Love & beauty"
+        },
+        {
+            "symbol": "Hourglass",
+            "meaning": "Passage of time, mortality",
+            "short": "🔍 Hourglass = Time passing"
+        },
+        {
+            "symbol": "Mirror",
+            "meaning": "Vanity, truth, self-knowledge",
+            "short": "🔍 Mirror = Vanity & truth"
+        },
+        {
+            "symbol": "Book",
+            "meaning": "Knowledge, learning, wisdom",
+            "short": "🔍 Book = Knowledge & wisdom"
+        },
+        {
+            "symbol": "Candle",
+            "meaning": "Life, enlightenment, Christ's light",
+            "short": "🔍 Candle = Life & enlightenment"
+        },
+        {
+            "symbol": "Butterfly",
+            "meaning": "Transformation, resurrection, soul",
+            "short": "🔍 Butterfly = Transformation"
+        },
+        {
+            "symbol": "Peacock",
+            "meaning": "Immortality, pride, resurrection",
+            "short": "🔍 Peacock = Immortality & pride"
+        },
+        {
+            "symbol": "Lamb",
+            "meaning": "Innocence, sacrifice, Christ",
+            "short": "🔍 Lamb = Innocence & sacrifice"
+        },
+        {
+            "symbol": "Crown",
+            "meaning": "Power, authority, divine right",
+            "short": "🔍 Crown = Power & authority"
+        },
+        {
+            "symbol": "Anchor",
+            "meaning": "Hope, steadfastness, salvation",
+            "short": "🔍 Anchor = Hope & steadfastness"
+        },
+        {
+            "symbol": "Grapes",
+            "meaning": "Eucharist, Christ's blood, abundance",
+            "short": "🔍 Grapes = Eucharist & abundance"
+        }
+    ]
+}

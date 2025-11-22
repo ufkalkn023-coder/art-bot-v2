@@ -1,0 +1,474 @@
+{
+    "quotes": [
+        {
+            "artist": "Pablo Picasso",
+            "quote": "Art washes away from the soul the dust of everyday life",
+            "short": "\"Art washes away the dust of everyday life\" - Picasso"
+        },
+        {
+            "artist": "Vincent van Gogh",
+            "quote": "I dream my painting and I paint my dream",
+            "short": "\"I dream my painting and I paint my dream\" - Van Gogh"
+        },
+        {
+            "artist": "Leonardo da Vinci",
+            "quote": "Art is never finished, only abandoned",
+            "short": "\"Art is never finished, only abandoned\" - da Vinci"
+        },
+        {
+            "artist": "Claude Monet",
+            "quote": "I must have flowers, always, and always",
+            "short": "\"I must have flowers, always\" - Monet"
+        },
+        {
+            "artist": "Salvador Dalí",
+            "quote": "Have no fear of perfection, you'll never reach it",
+            "short": "\"Have no fear of perfection\" - Dalí"
+        },
+        {
+            "artist": "Frida Kahlo",
+            "quote": "I paint myself because I am so often alone",
+            "short": "\"I paint myself because I am alone\" - Kahlo"
+        },
+        {
+            "artist": "Henri Matisse",
+            "quote": "Creativity takes courage",
+            "short": "\"Creativity takes courage\" - Matisse"
+        },
+        {
+            "artist": "Wassily Kandinsky",
+            "quote": "Color is the keyboard, the eyes are the harmonies",
+            "short": "\"Color is the keyboard\" - Kandinsky"
+        },
+        {
+            "artist": "Andy Warhol",
+            "quote": "Art is what you can get away with",
+            "short": "\"Art is what you can get away with\" - Warhol"
+        },
+        {
+            "artist": "Michelangelo",
+            "quote": "Every block of stone has a statue inside it",
+            "short": "\"Every stone has a statue inside\" - Michelangelo"
+        },
+        {
+            "artist": "Edgar Degas",
+            "quote": "Art is not what you see, but what you make others see",
+            "short": "\"Art is what you make others see\" - Degas"
+        },
+        {
+            "artist": "Paul Cézanne",
+            "quote": "I could paint for a hundred years without stopping",
+            "short": "\"I could paint for a hundred years\" - Cézanne"
+        },
+        {
+            "artist": "Georgia O'Keeffe",
+            "quote": "I found I could say things with color that I couldn't say any other way",
+            "short": "\"I say things with color\" - O'Keeffe"
+        },
+        {
+            "artist": "Rembrandt",
+            "quote": "Choose only one master—Nature",
+            "short": "\"Choose only one master—Nature\" - Rembrandt"
+        },
+        {
+            "artist": "Paul Klee",
+            "quote": "A line is a dot that went for a walk",
+            "short": "\"A line is a dot that went for a walk\" - Klee"
+        },
+        {
+            "artist": "Marc Chagall",
+            "quote": "If I create from the heart, nearly everything works",
+            "short": "\"Create from the heart\" - Chagall"
+        },
+        {
+            "artist": "Jackson Pollock",
+            "quote": "Every good painter paints what he is",
+            "short": "\"Every painter paints what he is\" - Pollock"
+        },
+        {
+            "artist": "Édouard Manet",
+            "quote": "Color is a matter of taste and of sensitivity",
+            "short": "\"Color is a matter of taste\" - Manet"
+        },
+        {
+            "artist": "Pierre-Auguste Renoir",
+            "quote": "Why shouldn't art be pretty? There are enough unpleasant things in the world",
+            "short": "\"Why shouldn't art be pretty?\" - Renoir"
+        },
+        {
+            "artist": "Caravaggio",
+            "quote": "Without light, there is no beauty",
+            "short": "\"Without light, no beauty\" - Caravaggio"
+        },
+        {
+            "artist": "Johannes Vermeer",
+            "quote": "The mind loves the unknown",
+            "short": "\"The mind loves the unknown\" - Vermeer"
+        },
+        {
+            "artist": "Raphael",
+            "quote": "I have always tried to hide my efforts and wished my works to have the light joyousness of springtime",
+            "short": "\"Works should have springtime joyousness\" - Raphael"
+        },
+        {
+            "artist": "Gustav Klimt",
+            "quote": "All art is erotic",
+            "short": "\"All art is erotic\" - Klimt"
+        },
+        {
+            "artist": "Edvard Munch",
+            "quote": "From my rotting body, flowers shall grow",
+            "short": "\"From my body, flowers shall grow\" - Munch"
+        },
+        {
+            "artist": "Banksy",
+            "quote": "Art should comfort the disturbed and disturb the comfortable",
+            "short": "\"Art comforts and disturbs\" - Banksy"
+        },
+        {
+            "artist": "Jean-Michel Basquiat",
+            "quote": "I don't think about art when I'm working. I try to think about life.",
+            "short": "\"I think about life, not art\" - Basquiat"
+        },
+        {
+            "artist": "Keith Haring",
+            "quote": "Art is for everybody.",
+            "short": "\"Art is for everybody\" - Haring"
+        },
+        {
+            "artist": "Yayoi Kusama",
+            "quote": "Polka dots are a way to infinity.",
+            "short": "\"Polka dots are infinity\" - Kusama"
+        },
+        {
+            "artist": "Ai Weiwei",
+            "quote": "Creativity is the power to reject the past, to change the status quo, and to seek new potential.",
+            "short": "\"Creativity rejects the past\" - Ai Weiwei"
+        },
+        {
+            "artist": "Marcel Duchamp",
+            "quote": "I don't believe in art. I believe in artists.",
+            "short": "\"I believe in artists\" - Duchamp"
+        },
+        {
+            "artist": "Piet Mondrian",
+            "quote": "Art is the path to being spiritual.",
+            "short": "\"Art is the path to spiritual\" - Mondrian"
+        },
+        {
+            "artist": "Mark Rothko",
+            "quote": "Silence is so accurate.",
+            "short": "\"Silence is so accurate\" - Rothko"
+        },
+        {
+            "artist": "Francis Bacon",
+            "quote": "The job of the artist is always to deepen the mystery.",
+            "short": "\"Deepen the mystery\" - Bacon"
+        },
+        {
+            "artist": "David Hockney",
+            "quote": "I prefer living in color.",
+            "short": "\"I prefer living in color\" - Hockney"
+        },
+        {
+            "artist": "Yoko Ono",
+            "quote": "You change the world by being yourself.",
+            "short": "\"Change world by being yourself\" - Ono"
+        },
+        {
+            "artist": "Marina Abramović",
+            "quote": "The artist is present.",
+            "short": "\"The artist is present\" - Abramović"
+        },
+        {
+            "artist": "Jeff Koons",
+            "quote": "Art is something that happens inside you.",
+            "short": "\"Art happens inside you\" - Koons"
+        },
+        {
+            "artist": "Damien Hirst",
+            "quote": "I want it to be revealing. I want it to be the truth.",
+            "short": "\"I want it to be the truth\" - Hirst"
+        },
+        {
+            "artist": "Tracey Emin",
+            "quote": "My life is art.",
+            "short": "\"My life is art\" - Emin"
+        },
+        {
+            "artist": "Cindy Sherman",
+            "quote": "I wish I could treat every day as Halloween, and get dressed up and go out into the world as some eccentric character.",
+            "short": "\"Every day as Halloween\" - Sherman"
+        },
+        {
+            "artist": "Louise Bourgeois",
+            "quote": "Art is a guaranty of sanity.",
+            "short": "\"Art is guaranty of sanity\" - Bourgeois"
+        },
+        {
+            "artist": "Gerhard Richter",
+            "quote": "Art is the highest form of hope.",
+            "short": "\"Art is highest form of hope\" - Richter"
+        },
+        {
+            "artist": "Anish Kapoor",
+            "quote": "Artists don't make objects. Artists make mythologies.",
+            "short": "\"Artists make mythologies\" - Kapoor"
+        },
+        {
+            "artist": "Bridget Riley",
+            "quote": "Focusing isn't just an optical activity, it is also a mental one.",
+            "short": "\"Focusing is mental\" - Riley"
+        },
+        {
+            "artist": "Frank Stella",
+            "quote": "What you see is what you see.",
+            "short": "\"What you see is what you see\" - Stella"
+        },
+        {
+            "artist": "Sol LeWitt",
+            "quote": "The idea becomes a machine that makes the art.",
+            "short": "\"Idea becomes machine\" - LeWitt"
+        },
+        {
+            "artist": "Donald Judd",
+            "quote": "It isn't necessary for a work to have a lot of things to look at, to have something to look at.",
+            "short": "\"Simple is enough\" - Judd"
+        },
+        {
+            "artist": "Dan Flavin",
+            "quote": "It is what it is and it ain't nothing else.",
+            "short": "\"It is what it is\" - Flavin"
+        },
+        {
+            "artist": "Robert Rauschenberg",
+            "quote": "Painting relates to both art and life. Neither can be made. (I try to act in that gap between the two.)",
+            "short": "\"Act in gap between art and life\" - Rauschenberg"
+        },
+        {
+            "artist": "Jasper Johns",
+            "quote": "Take an object. Do something to it. Do something else to it.",
+            "short": "\"Do something to an object\" - Johns"
+        },
+        {
+            "artist": "Cy Twombly",
+            "quote": "My line is childlike but not childish.",
+            "short": "\"Childlike but not childish\" - Twombly"
+        },
+        {
+            "artist": "Ellsworth Kelly",
+            "quote": "I have worked to free shape from its ground.",
+            "short": "\"Free shape from ground\" - Kelly"
+        },
+        {
+            "artist": "Agnes Martin",
+            "quote": "Beauty is the mystery of life.",
+            "short": "\"Beauty is mystery\" - Martin"
+        },
+        {
+            "artist": "Eva Hesse",
+            "quote": "Life doesn't last; art doesn't last. It doesn't matter.",
+            "short": "\"Art doesn't last\" - Hesse"
+        },
+        {
+            "artist": "Bruce Nauman",
+            "quote": "The true artist helps the world by revealing mystic truths.",
+            "short": "\"Artist reveals truths\" - Nauman"
+        },
+        {
+            "artist": "Richard Serra",
+            "quote": "I consider space to be a material.",
+            "short": "\"Space is a material\" - Serra"
+        },
+        {
+            "artist": "James Turrell",
+            "quote": "Light is not so much something that reveals, as it is itself the revelation.",
+            "short": "\"Light is revelation\" - Turrell"
+        },
+        {
+            "artist": "Olafur Eliasson",
+            "quote": "Art is not an object; it is an experience.",
+            "short": "\"Art is an experience\" - Eliasson"
+        },
+        {
+            "artist": "Kiki Smith",
+            "quote": "I like the idea of the body as a vessel.",
+            "short": "\"Body as a vessel\" - Smith"
+        },
+        {
+            "artist": "Jenny Saville",
+            "quote": "I want to be a painter of modern life, and modern bodies.",
+            "short": "\"Painter of modern bodies\" - Saville"
+        },
+        {
+            "artist": "Cecily Brown",
+            "quote": "I want the paint to be flesh.",
+            "short": "\"Paint to be flesh\" - Brown"
+        },
+        {
+            "artist": "Marlene Dumas",
+            "quote": "Art is a way of recognizing oneself.",
+            "short": "\"Recognizing oneself\" - Dumas"
+        },
+        {
+            "artist": "Elizabeth Peyton",
+            "quote": "I paint people I love.",
+            "short": "\"I paint people I love\" - Peyton"
+        },
+        {
+            "artist": "Peter Doig",
+            "quote": "I don't want to paint life, I want to paint the life of the mind.",
+            "short": "\"Paint life of the mind\" - Doig"
+        },
+        {
+            "artist": "Kerry James Marshall",
+            "quote": "You can't be born in Birmingham, Alabama, in 1955 and grow up in South Central [Los Angeles] near the Black Panthers headquarters, and not feel like you've got some kind of social responsibility.",
+            "short": "\"Artist has responsibility\" - Marshall"
+        },
+        {
+            "artist": "Theaster Gates",
+            "quote": "I want to make things that are beautiful.",
+            "short": "\"Make things beautiful\" - Gates"
+        },
+        {
+            "artist": "Mark Bradford",
+            "quote": "I like the idea of mapping.",
+            "short": "\"Idea of mapping\" - Bradford"
+        },
+        {
+            "artist": "Julie Mehretu",
+            "quote": "I am interested in the multifaceted layers of place, space, and time.",
+            "short": "\"Layers of place and time\" - Mehretu"
+        },
+        {
+            "artist": "Wangechi Mutu",
+            "quote": "Females carry the marks, language and nuances of their culture more than the male.",
+            "short": "\"Females carry culture\" - Mutu"
+        },
+        {
+            "artist": "El Anatsui",
+            "quote": "Art grows out of each particular situation.",
+            "short": "\"Art grows from situation\" - Anatsui"
+        },
+        {
+            "artist": "William Kentridge",
+            "quote": "The drawing is a way of thinking.",
+            "short": "\"Drawing is thinking\" - Kentridge"
+        },
+        {
+            "artist": "Shirin Neshat",
+            "quote": "I see my work as a visual dialogue.",
+            "short": "\"Visual dialogue\" - Neshat"
+        },
+        {
+            "artist": "Mona Hatoum",
+            "quote": "I want the work to have a physical effect on the viewer.",
+            "short": "\"Physical effect on viewer\" - Hatoum"
+        },
+        {
+            "artist": "Doris Salcedo",
+            "quote": "The artwork is an act of memory.",
+            "short": "\"Artwork is memory\" - Salcedo"
+        },
+        {
+            "artist": "Gabriel Orozco",
+            "quote": "I don't want to be a master. I want to be a beginner.",
+            "short": "\"I want to be a beginner\" - Orozco"
+        },
+        {
+            "artist": "Francis Alÿs",
+            "quote": "Sometimes doing something poetic can become political.",
+            "short": "\"Poetic can be political\" - Alÿs"
+        },
+        {
+            "artist": "Maurizio Cattelan",
+            "quote": "I'm not an artist. I'm an image maker.",
+            "short": "\"I'm an image maker\" - Cattelan"
+        },
+        {
+            "artist": "Takashi Murakami",
+            "quote": "My aesthetic is a misunderstanding.",
+            "short": "\"Aesthetic is misunderstanding\" - Murakami"
+        },
+        {
+            "artist": "Yoshitomo Nara",
+            "quote": "I don't paint for an audience.",
+            "short": "\"Don't paint for audience\" - Nara"
+        },
+        {
+            "artist": "Cai Guo-Qiang",
+            "quote": "Gunpowder is spontaneous and unpredictable.",
+            "short": "\"Gunpowder is spontaneous\" - Cai"
+        },
+        {
+            "artist": "Xu Bing",
+            "quote": "Words are the most basic element of human culture.",
+            "short": "\"Words are basic element\" - Xu"
+        },
+        {
+            "artist": "Zhang Huan",
+            "quote": "The body is the only direct way I can know society and the world.",
+            "short": "\"Body knows the world\" - Zhang"
+        },
+        {
+            "artist": "Liu Xiaodong",
+            "quote": "I want to paint the reality of life.",
+            "short": "\"Paint reality of life\" - Liu"
+        },
+        {
+            "artist": "Zeng Fanzhi",
+            "quote": "Art is about emotion.",
+            "short": "\"Art is about emotion\" - Zeng"
+        },
+        {
+            "artist": "Ed Ruscha",
+            "quote": "I like the idea of a word becoming a picture.",
+            "short": "\"Word becoming picture\" - Ruscha"
+        },
+        {
+            "artist": "John Baldessari",
+            "quote": "I will not make any more boring art.",
+            "short": "\"No more boring art\" - Baldessari"
+        },
+        {
+            "artist": "Barbara Kruger",
+            "quote": "I shop therefore I am.",
+            "short": "\"I shop therefore I am\" - Kruger"
+        },
+        {
+            "artist": "Jenny Holzer",
+            "quote": "Protect me from what I want.",
+            "short": "\"Protect me from what I want\" - Holzer"
+        },
+        {
+            "artist": "Cindy Sherman",
+            "quote": "I am my own muse.",
+            "short": "\"I am my own muse\" - Sherman"
+        },
+        {
+            "artist": "Jeff Wall",
+            "quote": "I like to think of my pictures as movies.",
+            "short": "\"Pictures as movies\" - Wall"
+        },
+        {
+            "artist": "Andreas Gursky",
+            "quote": "I am interested in the human species.",
+            "short": "\"Interested in human species\" - Gursky"
+        },
+        {
+            "artist": "Wolfgang Tillmans",
+            "quote": "I want to make pictures that feel like life.",
+            "short": "\"Pictures feel like life\" - Tillmans"
+        },
+        {
+            "artist": "Nan Goldin",
+            "quote": "I photograph my life.",
+            "short": "\"I photograph my life\" - Goldin"
+        },
+        {
+            "artist": "Robert Mapplethorpe",
+            "quote": "I look for perfection in form.",
+            "short": "\"Perfection in form\" - Mapplethorpe"
+        }
+    ]
+}

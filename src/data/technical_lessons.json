@@ -1,0 +1,79 @@
+{
+    "lessons": [
+        {
+            "technique": "Chiaroscuro",
+            "explanation": "The use of strong contrasts between light and dark to create volume and drama",
+            "short": "💡 Chiaroscuro: Light/dark contrast for drama"
+        },
+        {
+            "technique": "Sfumato",
+            "explanation": "Soft, almost imperceptible transitions between colors and tones",
+            "short": "💡 Sfumato: Soft color transitions (Mona Lisa)"
+        },
+        {
+            "technique": "Impasto",
+            "explanation": "Thick application of paint that stands out from the canvas surface",
+            "short": "💡 Impasto: Thick, textured paint application"
+        },
+        {
+            "technique": "Perspective",
+            "explanation": "Creating the illusion of depth on a flat surface using converging lines",
+            "short": "💡 Perspective: Creating depth with lines"
+        },
+        {
+            "technique": "Trompe-l'oeil",
+            "explanation": "Art technique that uses realistic imagery to create optical illusions",
+            "short": "💡 Trompe-l'oeil: Deceiving the eye"
+        },
+        {
+            "technique": "Glazing",
+            "explanation": "Applying thin, transparent layers of paint over dried paint",
+            "short": "💡 Glazing: Transparent paint layers"
+        },
+        {
+            "technique": "Scumbling",
+            "explanation": "Applying a thin, opaque layer of light paint over a dark area",
+            "short": "💡 Scumbling: Light over dark technique"
+        },
+        {
+            "technique": "Grisaille",
+            "explanation": "Painting executed entirely in shades of gray or neutral tones",
+            "short": "💡 Grisaille: Monochrome gray painting"
+        },
+        {
+            "technique": "Alla Prima",
+            "explanation": "Painting wet-on-wet without letting layers dry",
+            "short": "💡 Alla Prima: Wet-on-wet painting"
+        },
+        {
+            "technique": "Pointillism",
+            "explanation": "Using small dots of pure color that blend in the viewer's eye",
+            "short": "💡 Pointillism: Painting with tiny dots"
+        },
+        {
+            "technique": "Foreshortening",
+            "explanation": "Depicting an object at an angle to create depth",
+            "short": "💡 Foreshortening: Angled depth illusion"
+        },
+        {
+            "technique": "Underpainting",
+            "explanation": "Initial layer of paint as a base for subsequent layers",
+            "short": "💡 Underpainting: Foundation layer"
+        },
+        {
+            "technique": "Pentimento",
+            "explanation": "Visible traces of earlier work showing through paint",
+            "short": "💡 Pentimento: Artist's changes visible"
+        },
+        {
+            "technique": "Atmospheric Perspective",
+            "explanation": "Objects appear lighter and bluer as they recede into distance",
+            "short": "💡 Atmospheric Perspective: Distance = lighter/bluer"
+        },
+        {
+            "technique": "Contrapposto",
+            "explanation": "Figure standing with weight on one foot, creating natural asymmetry",
+            "short": "💡 Contrapposto: Natural standing pose"
+        }
+    ]
+}

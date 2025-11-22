@@ -1,0 +1,256 @@
+{
+    "events": [
+        {
+            "month": 1,
+            "day": 23,
+            "year": 1832,
+            "event": "Édouard Manet was born in Paris",
+            "short": "Manet born (1832)"
+        },
+        {
+            "month": 2,
+            "day": 22,
+            "year": 1857,
+            "event": "Heinrich Hertz was born, later inspiring Kandinsky's abstract art",
+            "short": "Kandinsky inspired by physics (1857)"
+        },
+        {
+            "month": 3,
+            "day": 30,
+            "year": 1853,
+            "event": "Vincent van Gogh was born in the Netherlands",
+            "short": "Van Gogh born (1853)"
+        },
+        {
+            "month": 4,
+            "day": 26,
+            "year": 1937,
+            "event": "Guernica bombing inspired Picasso's masterpiece",
+            "short": "Guernica bombing (1937)"
+        },
+        {
+            "month": 5,
+            "day": 15,
+            "year": 1886,
+            "event": "Van Gogh arrived in Paris, discovering Impressionism",
+            "short": "Van Gogh arrived in Paris (1886)"
+        },
+        {
+            "month": 6,
+            "day": 12,
+            "year": 1898,
+            "event": "M.C. Escher was born in the Netherlands",
+            "short": "Escher born (1898)"
+        },
+        {
+            "month": 7,
+            "day": 6,
+            "year": 1907,
+            "event": "Frida Kahlo was born in Mexico",
+            "short": "Frida Kahlo born (1907)"
+        },
+        {
+            "month": 8,
+            "day": 10,
+            "year": 1793,
+            "event": "The Louvre Museum opened to the public",
+            "short": "Louvre opened (1793)"
+        },
+        {
+            "month": 9,
+            "day": 8,
+            "year": 1504,
+            "event": "Michelangelo's David was unveiled in Florence",
+            "short": "David unveiled (1504)"
+        },
+        {
+            "month": 10,
+            "day": 25,
+            "year": 1881,
+            "event": "Pablo Picasso was born in Málaga, Spain",
+            "short": "Picasso born (1881)"
+        },
+        {
+            "month": 11,
+            "day": 14,
+            "year": 1840,
+            "event": "Claude Monet was born in Paris",
+            "short": "Monet born (1840)"
+        },
+        {
+            "month": 12,
+            "day": 16,
+            "year": 1866,
+            "event": "Wassily Kandinsky was born in Moscow",
+            "short": "Kandinsky born (1866)"
+        },
+        {
+            "month": 1,
+            "day": 15,
+            "year": 1622,
+            "event": "Molière was born, later inspiring many artists",
+            "short": "Molière born (1622)"
+        },
+        {
+            "month": 2,
+            "day": 19,
+            "year": 1473,
+            "event": "Nicolaus Copernicus was born, changing perspective in art",
+            "short": "Copernicus born (1473)"
+        },
+        {
+            "month": 3,
+            "day": 6,
+            "year": 1475,
+            "event": "Michelangelo was born in Caprese, Italy",
+            "short": "Michelangelo born (1475)"
+        },
+        {
+            "month": 4,
+            "day": 15,
+            "year": 1452,
+            "event": "Leonardo da Vinci was born in Vinci, Italy",
+            "short": "Leonardo born (1452)"
+        },
+        {
+            "month": 5,
+            "day": 21,
+            "year": 1471,
+            "event": "Albrecht Dürer was born in Nuremberg",
+            "short": "Dürer born (1471)"
+        },
+        {
+            "month": 6,
+            "day": 28,
+            "year": 1577,
+            "event": "Peter Paul Rubens was born in Germany",
+            "short": "Rubens born (1577)"
+        },
+        {
+            "month": 7,
+            "day": 15,
+            "year": 1606,
+            "event": "Rembrandt was born in Leiden, Netherlands",
+            "short": "Rembrandt born (1606)"
+        },
+        {
+            "month": 8,
+            "day": 22,
+            "year": 1862,
+            "event": "Claude Debussy was born, influencing Impressionist art",
+            "short": "Debussy born (1862)"
+        },
+        {
+            "month": 9,
+            "day": 29,
+            "year": 1571,
+            "event": "Caravaggio was born in Milan",
+            "short": "Caravaggio born (1571)"
+        },
+        {
+            "month": 10,
+            "day": 31,
+            "year": 1632,
+            "event": "Johannes Vermeer was born in Delft",
+            "short": "Vermeer born (1632)"
+        },
+        {
+            "month": 11,
+            "day": 30,
+            "year": 1667,
+            "event": "Jonathan Swift was born, later inspiring satirical art",
+            "short": "Swift born (1667)"
+        },
+        {
+            "month": 12,
+            "day": 5,
+            "year": 1901,
+            "event": "Walt Disney was born, revolutionizing animation art",
+            "short": "Disney born (1901)"
+        },
+        {
+            "month": 1,
+            "day": 31,
+            "year": 1797,
+            "event": "Franz Schubert was born, inspiring Romantic art",
+            "short": "Schubert born (1797)"
+        },
+        {
+            "month": 2,
+            "day": 14,
+            "year": 1869,
+            "event": "Charles Wilson was born, pioneering cloud chamber art",
+            "short": "Wilson born (1869)"
+        },
+        {
+            "month": 3,
+            "day": 31,
+            "year": 1596,
+            "event": "René Descartes was born, influencing rational art",
+            "short": "Descartes born (1596)"
+        },
+        {
+            "month": 4,
+            "day": 6,
+            "year": 1483,
+            "event": "Raphael was born in Urbino, Italy",
+            "short": "Raphael born (1483)"
+        },
+        {
+            "month": 5,
+            "day": 11,
+            "year": 1904,
+            "event": "Salvador Dalí was born in Figueres, Spain",
+            "short": "Dalí born (1904)"
+        },
+        {
+            "month": 6,
+            "day": 5,
+            "year": 1723,
+            "event": "Adam Smith was born, later influencing art economics",
+            "short": "Smith born (1723)"
+        },
+        {
+            "month": 7,
+            "day": 19,
+            "year": 1834,
+            "event": "Edgar Degas was born in Paris",
+            "short": "Degas born (1834)"
+        },
+        {
+            "month": 8,
+            "day": 6,
+            "year": 1928,
+            "event": "Andy Warhol was born in Pittsburgh",
+            "short": "Warhol born (1928)"
+        },
+        {
+            "month": 9,
+            "day": 25,
+            "year": 1906,
+            "event": "Dmitri Shostakovich was born, inspiring musical art",
+            "short": "Shostakovich born (1906)"
+        },
+        {
+            "month": 10,
+            "day": 7,
+            "year": 1885,
+            "event": "Niels Bohr was born, influencing abstract art concepts",
+            "short": "Bohr born (1885)"
+        },
+        {
+            "month": 11,
+            "day": 3,
+            "year": 1500,
+            "event": "Benvenuto Cellini was born, master goldsmith and sculptor",
+            "short": "Cellini born (1500)"
+        },
+        {
+            "month": 12,
+            "day": 18,
+            "year": 1879,
+            "event": "Paul Klee was born in Switzerland",
+            "short": "Klee born (1879)"
+        }
+    ]
+}
