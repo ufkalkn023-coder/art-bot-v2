@@ -3,17 +3,76 @@ import { CONFIG } from '../config.js';
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(CONFIG.GEMINI.API_KEY);
-// Model güncellendi: Hızlı ve çok modlu (görsel/metin) yetenekler için güncel model
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+/**
+ * Harici bir URL'den görseli indirir ve Gemini API'sinin beklediği formata dönüştürür.
+ * HTTP başlığından dinamik MIME türü algılanır.
+ */
+async function urlToGenerativePart(url) {
+    if (!url) return null;
+    
+    console.log(`🔍 [Görsel Analizi Başlatılıyor]: ${url} indiriliyor...`);
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP Hata kodu: ${response.status}`);
+        }
+        
+        // MIME Type'ı otomatik algıla 
+        const mimeType = response.headers.get("content-type") || "image/jpeg";
+
+        // Veriyi Buffer -> Base64 çevir
+        const arrayBuffer = await response.arrayBuffer();
+        const base64Data = Buffer.from(arrayBuffer).toString("base64");
+        
+        console.log(`✅ Görsel işlendi. Tür: ${mimeType}`);
+
+        return {
+            inlineData: {
+                data: base64Data, 
+                mimeType: mimeType 
+            }
+        };
+    } catch (e) {
+        console.error(`❌ Görsel indirme hatası: ${e.message}`);
+        return null; 
+    }
+}
+
+// --- MODEL KONFİGÜRASYONU GÜNCELLENDİ ---
+// "gemini-1.5-pro" karmaşık metinler ve analizler için çok daha güçlüdür.
+const model = genAI.getGenerativeModel({ 
+    model: "gemini-1.5-pro", 
+    config: { 
+        // Pro modelinde temperature 0.4-0.5 arası tutarlılık ve yaratıcılık dengesi için idealdir.
+        temperature: 0.5,
+        // Uzun çıktılar için maxOutputTokens artırılabilir ama default değer (8192) genelde yeterlidir.
+        // System Instruction: Modelin kişiliğini sabitler.
+        systemInstruction: "You are 'CuratorBot', a highly specialized, academic-level art historian and senior museum curator. Your primary function is to generate impeccably researched, authoritative, and brilliantly written content about fine art. You prioritize unassailable factual accuracy, a consistently high scholarly tone, and strict adherence to all output formatting constraints."
+    } 
+});
+
+// Kritik Negatif Kısıtlamaları İçeren Ortak Format Kuralları Özeti
+const FORMAT_RULES_SUMMARY = `
+Output must be impeccably written, demonstrate a flawless command of English grammar, and prioritize format compliance. Do NOT use ANY markdown symbols (*, #, -, _, lists, or enumerations) for emphasis, italics, or structuring within the body text. Use ONLY standard double line breaks to separate paragraphs. You may ONLY use **bolding** for the main section titles. Output must be plain text.
+
+**CRITICAL NEGATIVE CONSTRAINTS**: Do NOT use overly promotional language, emojis, exclamation points (unless essential for a quote), or casual social media slang. Maintain a consistently high scholarly standard.
+`;
+
+// --- Derinlemesine Sanat Makalesi (Deep Dive) ---
 
 export async function generateArtContent(artwork, imageUrl) {
     if (!model) return "Error: Gemini model not initialized.";
+    
+    let imagePart = null;
+    if (imageUrl) {
+        imagePart = await urlToGenerativePart(imageUrl); 
+    }
 
-    // Not: Bu prompt, görselin analiz edilebileceği varsayımıyla yazılmıştır.
-    // Ancak görsel Part'ı API çağrısına dahil etmediğin sürece
-    // (ki bu, dosya okuma ve base64 dönüşümü gerektirir),
-    // model sadece metinsel metadata'ya dayanacaktır.
     const prompt = `
+    Goal: Produce a single, deeply researched, scholarly, and impeccably written article.
+    
     Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (up to 20,000 characters).
     
     Artwork: "${artwork.title}" by ${artwork.artist} (${artwork.date})
@@ -21,31 +80,41 @@ export async function generateArtContent(artwork, imageUrl) {
     
     Your goal is to be the ultimate digital art historian—accessible but deeply knowledgeable.
     
+    ${imagePart ? "**CRITICAL INSTRUCTION**: The analysis MUST be grounded in the visual evidence of the accompanying image. Focus on color theory, light sourcing, and spatial depth explicitly derived from the picture." : "**NOTE**: Visual analysis is based on historical knowledge of this artwork."}
+    
     Structure:
-    1. **The Hook**: A captivating opening about the visual impact or a surprising fact.
-    2. **The Story**: The narrative behind the creation. What was happening in the artist's life?
-    3. **Deep Analysis**: Break down the technique, brushwork, lighting, and composition.
-    4. **Hidden Details**: Point out things most people miss.
-    5. **Historical Context**: Place it in the timeline of art history. Why does it matter?
-    6. **SEO Keywords**: Naturally weave in keywords like "Art History", "Masterpiece", "${artwork.artist}", "${artwork.movement}", "Oil Painting", etc.
+    1. **The Hook**: A captivating opening.
+    2. **The Story**: The narrative behind the creation.
+    3. **Deep Analysis**: Technique, brushwork, lighting, composition.
+    4. **Hidden Details**: Things most people miss.
+    5. **Historical Context**: Timeline and importance.
+    6. **SEO Keywords**: Weave in academic keywords naturally.
     
-    Tone: Professional, authoritative, storytelling, educational. Write like a museum curator or art historian.
+    ${FORMAT_RULES_SUMMARY}
     
-    Output ONLY the text. Do NOT use emojis or markdown symbols like ###. You may use **bold** for section titles only. Use plain text with clear paragraph breaks.
-    `;
+    **FINAL QC STEP**: Ensure NO markdown symbols (bullets, *, -) in body text.
+    `; 
 
-    try {
-        // Şu an sadece metin gönderiliyor. Eğer bir görsel analizi isteniyorsa,
-        // model.generateContent([prompt, imagePart]) şeklinde çağrı yapılmalıdır.
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim();
-    } catch (error) {
-        console.error("❌ Gemini Error:", error);
-        return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
+    const contents = imagePart ? [prompt, imagePart] : [prompt]; 
+
+    const MAX_RETRIES = 3;
+    for (let i = 0; i < MAX_RETRIES; i++) {
+        try {
+            console.log(`📝 [Makale Üretiliyor] Model: Gemini 1.5 Pro, Deneme: ${i+1}`);
+            const result = await model.generateContent({ contents: contents });
+            const response = await result.response;
+            return response.text().trim();
+        } catch (error) {
+            console.error(`❌ Gemini Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
+            if (i === MAX_RETRIES - 1) {
+                return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
+            }
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
     }
 }
 
+// --- Detaylı Zoom Tweet'i ---
 
 export async function generateDetailZoomText(artwork) {
     if (!model) return null;
@@ -53,8 +122,8 @@ export async function generateDetailZoomText(artwork) {
     const prompt = `
     Write a short tweet (max 200 chars) encouraging people to look closer at the details of "${artwork.title}".
     Focus on brushwork, lighting, or hidden details.
-    
-    Output ONLY the text.
+    Tone: Engaging, brief, and perfectly punctuated.
+    ${FORMAT_RULES_SUMMARY}
     `;
 
     try {
@@ -68,7 +137,7 @@ export async function generateDetailZoomText(artwork) {
 }
 
 
-// --- Forgotten Artists Spotlight ---
+// --- Unutulmuş Sanatçılar Profili (Spotlight) ---
 
 export async function generateForgottenArtistSpotlight(artist, artwork) {
     if (!model) return null;
@@ -78,6 +147,8 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
         : `born ${artist.birth_year}`;
 
     const prompt = `
+    Goal: Produce a single, profoundly researched, and impeccably written article. Prioritize unassailable factual accuracy and stylistic excellence above all else.
+    
     You are writing a powerful, SEO-optimized spotlight on an underrepresented artist.
     
     Artist: ${artist.name} (${lifespan})
@@ -88,67 +159,38 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
     
     Why they're underrepresented: ${artist.why_forgotten}
     
-    Write a comprehensive social media post (up to 20,000 characters) that:
+    Write a comprehensive social media post (up to 20,000 characters) that covers the following structure:
     
-    1. **Opening Hook**: Start with a powerful question or statement about representation in art
-        Example: "Why don't we know ${artist.name}'s name as well as Picasso's?"
+    **The structure must be followed exactly. Output text must flow naturally without using numbering or lists within the body:**
     
-    2. **Artist's Story**: Tell their compelling biography
-        - Early life and barriers they faced
-        - How they overcame discrimination (race, gender, etc.)
-        - Their artistic journey and breakthrough moments
+    1. **Opening Hook**: Start with a powerful question or statement about representation in art.
+    2. **Artist's Story**: Tell their compelling biography, including barriers and breakthroughs.
+    3. **Artistic Contributions**: Analyze their unique style and innovations.
+    4. **This Artwork**: Deep analysis of "${artwork.title}".
+    5. **Historical Context**: The systemic barriers and challenges they faced.
+    6. **Legacy & Modern Relevance**: Why they matter today and their recent recognition.
+    7. **Call to Action**: Encourage learning more and invite discussion.
+    8. **SEO Keywords**: Naturally weave them in.
+    9. **Hashtags**: Include 10-12 relevant hashtags at the very end of the post.
     
-    3. **Artistic Contributions**: Analyze their unique style and innovations
-        - What made their work groundbreaking
-        - How they influenced art history
-        - Specific techniques or themes they pioneered
-    
-    4. **This Artwork**: Deep analysis of "${artwork.title}"
-        - Visual description
-        - Symbolism and meaning
-        - Why it's significant in their body of work
-    
-    5. **Historical Context**: The barriers they faced
-        - Systemic discrimination in the art world
-        - How they overcame discrimination (race, gender, etc.)
-        - Contemporary artists who faced similar challenges
-    
-    6. **Legacy & Modern Relevance**: Why they matter today
-        - How they paved the way for diverse artists
-        - Recent recognition or exhibitions
-        - What we can learn from their story
-    
-    7. **Call to Action**: Encourage learning more
-        - Where to see their work (museums: ${artist.museums.join(', ')})
-        - Invite discussion about diversity in art
-    
-    8. **SEO Keywords** (naturally integrate):
-        - "${artist.name}"
-        - "underrepresented artists"
-        - "diversity in art"
-        - "${artist.ethnicity} artists"
-        - "${artist.gender} artists in history"
-        - "${artist.movement}"
-    
-    9. **Hashtags** (10-12):
-        - Broad: #ArtHistory #DiversityInArt #RepresentationMatters
-        - Specific: #${artist.name.replace(/\s+/g, '')} #${artist.ethnicity.replace(/\s+/g, '')}Artists
-        - Movement: #${artist.movement.replace(/\s+/g, '')}
-        - Engagement: #ForgottenArtists #ArtEducation #MuseumCollection
-    
-    **Tone**: Respectful, empowering, educational, and passionate. Celebrate their achievements while acknowledging injustice.
-    
-    **Language**: English
-    
-    Output ONLY the post text with proper formatting.
+    ${FORMAT_RULES_SUMMARY}
+
+    **FINAL QC STEP**: Perform an internal review to ensure NO markdown symbols (bullets, #, -, *) were used in the body text. Output ONLY the post text.
     `;
 
-    try {
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim();
-    } catch (error) {
-        console.error("❌ Gemini Spotlight Error:", error);
-        return null;
+    const MAX_RETRIES = 3;
+    for (let i = 0; i < MAX_RETRIES; i++) {
+        try {
+            console.log(`📝 [Spotlight Üretiliyor] Model: Gemini 1.5 Pro, Deneme: ${i+1}`);
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            return response.text().trim();
+        } catch (error) {
+            console.error(`❌ Gemini Spotlight Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
+            if (i === MAX_RETRIES - 1) {
+                return null;
+            }
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
     }
 }
