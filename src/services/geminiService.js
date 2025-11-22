@@ -10,45 +10,45 @@ const genAI = new GoogleGenerativeAI(CONFIG.GEMINI.API_KEY);
  * HTTP başlığından dinamik MIME türü algılanır.
  */
 async function urlToGenerativePart(url) {
-    if (!url) return null;
-    
-    console.log(`🔍 [Görsel Analizi Başlatılıyor]: ${url} indiriliyor...`);
-    
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP Hata kodu: ${response.status}`);
-        }
-        
-        // MIME Type'ı otomatik algıla 
-        const mimeType = response.headers.get("content-type") || "image/jpeg";
+   if (!url) return null;
 
-        // Veriyi Buffer -> Base64 çevir
-        const arrayBuffer = await response.arrayBuffer();
-        const base64Data = Buffer.from(arrayBuffer).toString("base64");
-        
-        console.log(`✅ Görsel işlendi. Tür: ${mimeType}`);
+   console.log(`🔍 [Görsel Analizi Başlatılıyor]: ${url} indiriliyor...`);
 
-        return {
-            inlineData: {
-                data: base64Data, 
-                mimeType: mimeType 
-            }
-        };
-    } catch (e) {
-        console.error(`❌ Görsel indirme hatası: ${e.message}`);
-        return null; 
-    }
+   try {
+      const response = await fetch(url);
+      if (!response.ok) {
+         throw new Error(`HTTP Hata kodu: ${response.status}`);
+      }
+
+      // MIME Type'ı otomatik algıla 
+      const mimeType = response.headers.get("content-type") || "image/jpeg";
+
+      // Veriyi Buffer -> Base64 çevir
+      const arrayBuffer = await response.arrayBuffer();
+      const base64Data = Buffer.from(arrayBuffer).toString("base64");
+
+      console.log(`✅ Görsel işlendi. Tür: ${mimeType}`);
+
+      return {
+         inlineData: {
+            data: base64Data,
+            mimeType: mimeType
+         }
+      };
+   } catch (e) {
+      console.error(`❌ Görsel indirme hatası: ${e.message}`);
+      return null;
+   }
 }
 
 // ✅ MODEL GÜNCELLEMESİ: gemini-2.5-flash kullanılıyor.
-const model = genAI.getGenerativeModel({ 
-    model: "gemini-2.5-flash", 
-    config: { 
-        temperature: 0.5,
-        // Rolü ve Kişiliği Sabitleyen Sistem Talimatı
-        systemInstruction: "You are 'CuratorBot', a highly specialized, academic-level art historian and senior museum curator. Your primary function is to generate impeccably researched, authoritative, and brilliantly written content about fine art. You prioritize unassailable factual accuracy, a consistently high scholarly tone, and strict adherence to all output formatting constraints."
-    } 
+const model = genAI.getGenerativeModel({
+   model: "gemini-2.5-flash",
+   generationConfig: {
+      temperature: 0.5,
+   },
+   // Rolü ve Kişiliği Sabitleyen Sistem Talimatı
+   systemInstruction: "You are 'CuratorBot', a highly specialized, academic-level art historian and senior museum curator. Your primary function is to generate impeccably researched, authoritative, and brilliantly written content about fine art. You prioritize unassailable factual accuracy, a consistently high scholarly tone, and strict adherence to all output formatting constraints."
 });
 
 // Kritik Negatif Kısıtlamaları İçeren Ortak Format Kuralları Özeti
@@ -61,15 +61,15 @@ Output must be impeccably written, demonstrate a flawless command of English gra
 // --- Derinlemesine Sanat Makalesi (Deep Dive) ---
 
 export async function generateArtContent(artwork, imageUrl) {
-    if (!model) return "Error: Gemini model not initialized.";
-    
-    let imagePart = null;
-    if (imageUrl) {
-        // Dinamik MIME türü algılama kullanılıyor.
-        imagePart = await urlToGenerativePart(imageUrl); 
-    }
+   if (!model) return "Error: Gemini model not initialized.";
 
-    const prompt = `
+   let imagePart = null;
+   if (imageUrl) {
+      // Dinamik MIME türü algılama kullanılıyor.
+      imagePart = await urlToGenerativePart(imageUrl);
+   }
+
+   const prompt = `
     Goal: Produce a single, deeply researched, scholarly, and impeccably written article.
     
     Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (up to 20,000 characters).
@@ -92,34 +92,34 @@ export async function generateArtContent(artwork, imageUrl) {
     ${FORMAT_RULES_SUMMARY}
     
     **FINAL QC STEP**: Ensure NO markdown symbols (bullets, *, -) in body text.
-    `; 
+    `;
 
-    const contents = imagePart ? [prompt, imagePart] : [prompt]; 
+   const contents = imagePart ? [prompt, imagePart] : [prompt];
 
-    // ✅ Yeniden Deneme (Retry) Mekanizması
-    const MAX_RETRIES = 3;
-    for (let i = 0; i < MAX_RETRIES; i++) {
-        try {
-            const result = await model.generateContent({ contents: contents });
-            const response = await result.response;
-            return response.text().trim();
-        } catch (error) {
-            console.error(`❌ Gemini Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
-            if (i === MAX_RETRIES - 1) {
-                // Üç denemeden sonra varsayılan metni döndür.
-                return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
-            }
-            await new Promise(resolve => setTimeout(resolve, 2000));
-        }
-    }
+   // ✅ Yeniden Deneme (Retry) Mekanizması
+   const MAX_RETRIES = 3;
+   for (let i = 0; i < MAX_RETRIES; i++) {
+      try {
+         const result = await model.generateContent(contents);
+         const response = await result.response;
+         return response.text().trim();
+      } catch (error) {
+         console.error(`❌ Gemini Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
+         if (i === MAX_RETRIES - 1) {
+            // Üç denemeden sonra varsayılan metni döndür.
+            return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
+         }
+         await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+   }
 }
 
 // --- Detaylı Zoom Tweet'i ---
 
 export async function generateDetailZoomText(artwork) {
-    if (!model) return null;
+   if (!model) return null;
 
-    const prompt = `
+   const prompt = `
     Write a short tweet (max 200 chars) encouraging people to look closer at the details of "${artwork.title}".
     Focus on brushwork, lighting, or hidden details.
     
@@ -128,27 +128,27 @@ export async function generateDetailZoomText(artwork) {
     ${FORMAT_RULES_SUMMARY}
     `;
 
-    try {
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim();
-    } catch (error) {
-        console.error("❌ Gemini Detail Zoom Error:", error);
-        return null;
-    }
+   try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      return response.text().trim();
+   } catch (error) {
+      console.error("❌ Gemini Detail Zoom Error:", error);
+      return null;
+   }
 }
 
 
 // --- Unutulmuş Sanatçılar Profili (Spotlight) ---
 
 export async function generateForgottenArtistSpotlight(artist, artwork) {
-    if (!model) return null;
+   if (!model) return null;
 
-    const lifespan = artist.death_year
-        ? `${artist.birth_year}-${artist.death_year}`
-        : `born ${artist.birth_year}`;
+   const lifespan = artist.death_year
+      ? `${artist.birth_year}-${artist.death_year}`
+      : `born ${artist.birth_year}`;
 
-    const prompt = `
+   const prompt = `
     Goal: Produce a single, profoundly researched, and impeccably written article. Prioritize unassailable factual accuracy and stylistic excellence above all else.
     
     You are writing a powerful, SEO-optimized spotlight on an underrepresented artist.
@@ -182,20 +182,20 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
     Output ONLY the post text with the proper formatting, including the list of hashtags at the very end.
     `;
 
-    // ✅ Yeniden Deneme (Retry) Mekanizması
-    const MAX_RETRIES = 3;
-    for (let i = 0; i < MAX_RETRIES; i++) {
-        try {
-            const result = await model.generateContent(prompt);
-            const response = await result.response;
-            return response.text().trim();
-        } catch (error) {
-            console.error(`❌ Gemini Spotlight Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
-            if (i === MAX_RETRIES - 1) {
-                // Üç denemeden sonra null döndür.
-                return null;
-            }
-            await new Promise(resolve => setTimeout(resolve, 2000));
-        }
-    }
+   // ✅ Yeniden Deneme (Retry) Mekanizması
+   const MAX_RETRIES = 3;
+   for (let i = 0; i < MAX_RETRIES; i++) {
+      try {
+         const result = await model.generateContent(prompt);
+         const response = await result.response;
+         return response.text().trim();
+      } catch (error) {
+         console.error(`❌ Gemini Spotlight Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
+         if (i === MAX_RETRIES - 1) {
+            // Üç denemeden sonra null döndür.
+            return null;
+         }
+         await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+   }
 }
