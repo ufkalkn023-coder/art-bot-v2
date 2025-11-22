@@ -1,3 +1,4 @@
+
 import { GoogleGenerativeAI } from '@google/generative-ai';
 // Yerleşik Global Fetch API'si kullanılacaktır (Node.js 18+ gereklidir).
 import { CONFIG } from '../config.js';
@@ -71,30 +72,33 @@ export async function generateArtContent(artwork, imageUrl) {
    }
 
    const prompt = `
-    Goal: Produce a single, deeply researched, scholarly, and impeccably written article.
-    
-    Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (Minimum 1000 words / up to 20,000 characters).
-    
-    **CRITICAL**: The output MUST be long, detailed, and exhaustive. Do not summarize. Expand on every point.
+    Goal: Create a minimalist, elegant "Museum Label" for this artwork.
     
     Artwork: "${artwork.title}" by ${artwork.artist} (${artwork.date})
+    Medium: ${artwork.medium}
+    ${artwork.dimensions ? `Dimensions: ${artwork.dimensions}` : ''}
+    ${artwork.style ? `Style: ${artwork.style}` : ''}
     Museum: ${artwork.museum}
     
-    Your goal is to be the ultimate digital art historian—accessible but deeply knowledgeable.
+    Output Format (Strictly follow this):
     
-    ${imagePart ? "**CRITICAL INSTRUCTION**: The analysis MUST be grounded in the visual evidence of the accompanying image. Focus on color theory, light sourcing, and spatial depth explicitly derived from the picture." : "**NOTE**: Visual analysis is based on historical knowledge of this artwork."}
+    **${artwork.title}**
+    ${artwork.artist} (${artwork.date})
+    *${artwork.medium}*
+    ${artwork.dimensions ? `*${artwork.dimensions}*` : ''}
+    ${artwork.style ? `*${artwork.style}*` : ''}
     
-    Structure:
-    1. **The Hook**: A captivating opening.
-    2. **The Story**: The narrative behind the creation.
-    3. **Deep Analysis**: Technique, brushwork, lighting, composition.
-    4. **Hidden Details**: Things most people miss.
-    5. **Historical Context**: Timeline and importance.
-    6. **SEO Keywords**: Weave in academic keywords naturally.
+    📍 ${artwork.museum}
     
-    ${FORMAT_RULES_SUMMARY}
+    💡 *Curator's Note: [Write a single, fascinating sentence about the artwork's significance, technique, or hidden meaning. Max 280 characters.]*
     
-    **FINAL QC STEP**: Ensure NO markdown symbols (bullets, *, -) in body text.
+    #Art #ArtHistory #${artwork.artist.replace(/\s+/g, '')}
+    
+    **Constraints**:
+    - NO other text.
+    - NO introductory filler.
+    - NO emojis in the metadata section (only 📍 and 💡 allowed).
+    - The Curator's Note must be short, insightful, and accessible.
     `;
 
    const contents = imagePart ? [prompt, imagePart] : [prompt];
