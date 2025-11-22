@@ -46,27 +46,6 @@ export async function generateArtContent(artwork, imageUrl) {
 
 
 
-export async function generateTimeCapsule(artwork) {
-   if (!model) return null;
-
-   const prompt = `
-    If "${artwork.title}" (${artwork.date}) were a time capsule, what single object or sound from that era would be trapped inside it?
-    
-    Write a short, poetic answer (max 200 chars).
-    
-    Output ONLY the answer.
-    `;
-
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Time Capsule Error:", error);
-      return null;
-   }
-}
-
 export async function generateDetailZoomText(artwork) {
    if (!model) return null;
 
@@ -87,32 +66,7 @@ export async function generateDetailZoomText(artwork) {
    }
 }
 
-export async function generateQuizText(artwork) {
-   if (!model) return null;
 
-   const prompt = `
-    Create a "Guess the Artist" quiz tweet for "${artwork.title}".
-    
-    Format:
-    "🎨 Guess the Artist!
-    
-    Clue 1: [Stylistic clue]
-    Clue 2: [Biographical clue]
-    
-    (Answer in next tweet!) #ArtQuiz"
-    
-    Output ONLY the tweet text.
-    `;
-
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Quiz Error:", error);
-      return null;
-   }
-}
 
 // --- Forgotten Artists Spotlight ---
 
@@ -199,36 +153,4 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
    }
 }
 
-export async function generateEvolutionPost(theme, artworks) {
-   if (!model) return null;
 
-   const artworksList = artworks.map((a, i) => `${i + 1}. "${a.title}" by ${a.artist} (${a.date})`).join('\n');
-
-   const prompt = `
-     Create a fascinating Twitter thread (or long post) about the "Evolution of ${theme} in Art".
-     
-     I have selected these ${artworks.length} artworks:
-     ${artworksList}
-     
-     Write a cohesive narrative that explains how the depiction of ${theme} has changed over time, referencing these specific pieces.
-     
-     Structure:
-     - **Title**: Catchy title with emojis
-     - **Intro**: Brief set up of the theme.
-     - **The Journey**: Walk through the timeline, grouping the artworks if needed, highlighting stylistic changes (e.g. from realism to abstraction).
-     - **Conclusion**: A thought on what this evolution tells us.
-     
-     Tone: Educational, storytelling, engaging.
-     
-     Output ONLY the text.
-     `;
-
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Evolution Post Error:", error);
-      return null;
-   }
-}
