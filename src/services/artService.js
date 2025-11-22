@@ -1,5 +1,25 @@
+// artService.js
+
+// 1. Gerekli kütüphaneyi içe aktarın. Axios, HTTP istekleri için gereklidir.
+import axios from 'axios'; 
+
+// 2. CONFIG nesnesini tanımlayın.
+// Bu nesne, axios istekleri için timeout gibi ayarları tutar. 
+// Eğer CONFIG ayarlarınız başka bir dosyadan geliyorsa (örn. config.js),
+// buraya o dosyadan import etmelisiniz:
+// import { CONFIG } from './config.js'; 
+// Aksi takdirde, varsayılan bir tanım kullanabiliriz:
+
+const CONFIG = {
+    AXIOS: {
+        timeout: 15000 // Örnek timeout: 15 saniye
+        // Diğer özel ayarlar buraya eklenebilir
+    }
+};
+
 // --- Search by Artist Name (for Forgotten Artists Spotlight) ---
 
+// Fonksiyonun dışa aktarılması (export)
 export async function searchArtworkByArtist(artistName) {
     // Try Chicago API first
     try {
@@ -24,7 +44,8 @@ export async function searchArtworkByArtist(artistName) {
             }
         }
     } catch (e) {
-        console.error("Error searching Chicago for artist:", e.message);
+        // Hata ayıklama için detaylı loglama
+        console.error(`Error searching Chicago for artist (${artistName}):`, e.message);
     }
 
     // Try Met API
@@ -35,7 +56,7 @@ export async function searchArtworkByArtist(artistName) {
         );
         const ids = searchRes.data.objectIDs;
         if (ids && ids.length > 0) {
-            // Try first few results
+            // Try first few results (limit to 5 API calls to avoid rate limits/slowdown)
             for (let i = 0; i < Math.min(5, ids.length); i++) {
                 try {
                     const artRes = await axios.get(
@@ -55,12 +76,13 @@ export async function searchArtworkByArtist(artistName) {
                         };
                     }
                 } catch (e) {
-                    continue;
+                    // Tekil eser sorgusu hatası, bir sonraki esere geç
+                    continue; 
                 }
             }
         }
     } catch (e) {
-        console.error("Error searching Met for artist:", e.message);
+        console.error(`Error searching Met for artist (${artistName}):`, e.message);
     }
 
     // Try Cleveland API
@@ -71,7 +93,8 @@ export async function searchArtworkByArtist(artistName) {
         );
         if (res.data.data && res.data.data.length > 0) {
             for (const art of res.data.data) {
-                const artistDesc = art.creators[0]?.description || "";
+                // Cleveland API'da artist bilgisi creators dizisi içinde olabilir
+                const artistDesc = art.creators?.[0]?.description || ""; 
                 if (art.images?.web?.url && artistDesc.toLowerCase().includes(artistName.toLowerCase())) {
                     return {
                         title: art.title,
@@ -85,8 +108,16 @@ export async function searchArtworkByArtist(artistName) {
             }
         }
     } catch (e) {
-        console.error("Error searching Cleveland for artist:", e.message);
+        console.error(`Error searching Cleveland for artist (${artistName}):`, e.message);
     }
 
+    // Tüm denemeler başarısız olursa null döner
     return null;
 }
+
+// Eğer daha önce aranan 'searchArtworks' fonksiyonu da projenizde varsa,
+// o fonksiyonu da buraya ekleyip export etmeniz gerekir.
+/* export async function searchArtworks(query) {
+    // ... searchArtworks fonksiyon içeriği
+}
+*/
