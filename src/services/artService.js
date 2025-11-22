@@ -161,7 +161,7 @@ export async function fetchArtwork() {
             const randomPage = Math.floor(Math.random() * 1000) + 1;
 
             const response = await axios.get(
-                `https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=1&page=${randomPage}&fields=id,title,image_id,artist_title,date_display,medium_display`,
+                `https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=1&page=${randomPage}&fields=id,title,image_id,artist_title,date_display,medium_display,dimensions,style_title`,
                 CONFIG.AXIOS
             );
 
@@ -177,6 +177,8 @@ export async function fetchArtwork() {
                         artist: art.artist_title || "Unknown Artist",
                         date: art.date_display || "Unknown Date",
                         medium: art.medium_display || "Unknown Medium",
+                        dimensions: art.dimensions || null,
+                        style: art.style_title || null,
                         museum: "Art Institute of Chicago",
                         link: `https://www.artic.edu/artworks/${art.id}`,
                         imageUrl: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`
