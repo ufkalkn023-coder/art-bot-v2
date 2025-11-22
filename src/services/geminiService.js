@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+// Yerleşik Global Fetch API'si kullanılacaktır (Node.js 18+ gereklidir).
 import { CONFIG } from '../config.js';
 
 // Initialize Gemini API
@@ -40,15 +41,12 @@ async function urlToGenerativePart(url) {
     }
 }
 
-// --- MODEL KONFİGÜRASYONU GÜNCELLENDİ ---
-// "gemini-1.5-pro" karmaşık metinler ve analizler için çok daha güçlüdür.
+// ✅ MODEL GÜNCELLEMESİ: gemini-2.5-flash kullanılıyor.
 const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-pro", 
+    model: "gemini-2.5-flash", 
     config: { 
-        // Pro modelinde temperature 0.4-0.5 arası tutarlılık ve yaratıcılık dengesi için idealdir.
         temperature: 0.5,
-        // Uzun çıktılar için maxOutputTokens artırılabilir ama default değer (8192) genelde yeterlidir.
-        // System Instruction: Modelin kişiliğini sabitler.
+        // Rolü ve Kişiliği Sabitleyen Sistem Talimatı
         systemInstruction: "You are 'CuratorBot', a highly specialized, academic-level art historian and senior museum curator. Your primary function is to generate impeccably researched, authoritative, and brilliantly written content about fine art. You prioritize unassailable factual accuracy, a consistently high scholarly tone, and strict adherence to all output formatting constraints."
     } 
 });
@@ -67,6 +65,7 @@ export async function generateArtContent(artwork, imageUrl) {
     
     let imagePart = null;
     if (imageUrl) {
+        // Dinamik MIME türü algılama kullanılıyor.
         imagePart = await urlToGenerativePart(imageUrl); 
     }
 
@@ -97,16 +96,17 @@ export async function generateArtContent(artwork, imageUrl) {
 
     const contents = imagePart ? [prompt, imagePart] : [prompt]; 
 
+    // ✅ Yeniden Deneme (Retry) Mekanizması
     const MAX_RETRIES = 3;
     for (let i = 0; i < MAX_RETRIES; i++) {
         try {
-            console.log(`📝 [Makale Üretiliyor] Model: Gemini 1.5 Pro, Deneme: ${i+1}`);
             const result = await model.generateContent({ contents: contents });
             const response = await result.response;
             return response.text().trim();
         } catch (error) {
             console.error(`❌ Gemini Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
             if (i === MAX_RETRIES - 1) {
+                // Üç denemeden sonra varsayılan metni döndür.
                 return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
             }
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -122,7 +122,9 @@ export async function generateDetailZoomText(artwork) {
     const prompt = `
     Write a short tweet (max 200 chars) encouraging people to look closer at the details of "${artwork.title}".
     Focus on brushwork, lighting, or hidden details.
+    
     Tone: Engaging, brief, and perfectly punctuated.
+    
     ${FORMAT_RULES_SUMMARY}
     `;
 
@@ -175,19 +177,22 @@ export async function generateForgottenArtistSpotlight(artist, artwork) {
     
     ${FORMAT_RULES_SUMMARY}
 
-    **FINAL QC STEP**: Perform an internal review to ensure NO markdown symbols (bullets, #, -, *) were used in the body text. Output ONLY the post text.
+    **FINAL QC STEP**: Before outputting the final text, perform an internal review to ensure absolute compliance with all formatting and negative constraints. Specifically, verify that NO markdown symbols (e.g., bullets, #, -, *) were used in the body text.
+    
+    Output ONLY the post text with the proper formatting, including the list of hashtags at the very end.
     `;
 
+    // ✅ Yeniden Deneme (Retry) Mekanizması
     const MAX_RETRIES = 3;
     for (let i = 0; i < MAX_RETRIES; i++) {
         try {
-            console.log(`📝 [Spotlight Üretiliyor] Model: Gemini 1.5 Pro, Deneme: ${i+1}`);
             const result = await model.generateContent(prompt);
             const response = await result.response;
             return response.text().trim();
         } catch (error) {
             console.error(`❌ Gemini Spotlight Error (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
             if (i === MAX_RETRIES - 1) {
+                // Üç denemeden sonra null döndür.
                 return null;
             }
             await new Promise(resolve => setTimeout(resolve, 2000));
