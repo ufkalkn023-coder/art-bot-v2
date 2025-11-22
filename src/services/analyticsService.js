@@ -1,156 +1,184 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { CONFIG } from '../config.js';
+import fs from 'fs';
+import path from 'path';
+import {
+    insertTweet,
+    upsertArtist,
+    upsertMuseum,
+    getAnalytics,
+    getTotalImageSize,
+    getColorStats
+} from './databaseService.js';
 
-// Initialize Gemini API
-const genAI = new GoogleGenerativeAI(CONFIG.GEMINI.API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+const BACKUP_DIR = path.resolve('backup');
+const BACKUP_TWEETS_FILE = path.join(BACKUP_DIR, 'tweets.json');
+const BACKUP_IMAGES_DIR = path.join(BACKUP_DIR, 'images');
 
-export async function generateArtContent(artwork, imageUrl) {
-   if (!model) return "Error: Gemini model not initialized.";
+export async function trackTweet(artwork, tweetText, hasBirthday = false, hasGlossary = false, movementTheme = null, imageSize = 0, imageBuffer = null) {
+    // Extract dominant color if image buffer is provided
+    let dominantColor = null;
+    if (imageBuffer) {
+        dominantColor = await extractDominantColor(imageBuffer);
+    }
 
-   const prompt = `
-    Analyze this artwork and write a comprehensive, engaging "Deep Dive" article for social media (up to 20,000 characters).
-    
-    Artwork: "${artwork.title}" by ${artwork.artist} (${artwork.date})
-    Museum: ${artwork.museum}
-    
-    Your goal is to be the ultimate digital art historian—accessible but deeply knowledgeable.
-    
-    Structure:
-    1. **The Hook**: A captivating opening about the visual impact or a surprising fact.
-    2. **The Story**: The narrative behind the creation. What was happening in the artist's life?
-    3. **Deep Analysis**: Break down the technique, brushwork, lighting, and composition.
-    4. **Hidden Details**: Point out things most people miss.
-    5. **Historical Context**: Place it in the timeline of art history. Why does it matter?
-    6. **SEO Keywords**: Naturally weave in keywords like "Art History", "Masterpiece", "${artwork.artist}", "${artwork.movement}", "Oil Painting", etc.
-    
-    Tone: Enthusiastic, authoritative, storytelling, slightly informal but educational.
-    
-    Output ONLY the text. Use emojis to break up sections.
-    `;
+    // Insert into database
+    insertTweet({
+        timestamp: new Date().toISOString(),
+        artist: artwork.artist,
+        title: artwork.title,
+        museum: artwork.museum,
+        date: artwork.date,
+        tweet_text: tweetText,
+        tweet_length: tweetText.length,
+        link: artwork.link,
+        image_path: null,
+        image_size: imageSize,
+        has_birthday: hasBirthday,
+        has_glossary: hasGlossary,
+        movement_theme: movementTheme,
+        dominant_color: dominantColor
+    });
 
-   try {
-      // For vision models, we would need to pass the image data. 
-      // Since we are using the text-only model for now (or if the image isn't passed as a Part),
-      // we will rely on the metadata.
-      // TODO: Implement actual vision capabilities if needed by passing image parts.
+    // Update artist and museum counts
+    upsertArtist(artwork.artist);
+    upsertMuseum(artwork.museum);
 
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Error:", error);
-      return `🎨 ${artwork.title} by ${artwork.artist}\n\nA masterpiece from ${artwork.date}. \n\n#Art #DailyArt`;
-   }
+    console.log("📊 Analytics updated");
 }
 
+export function backupTweet(artwork, tweetText, imageBuffer) {
+    try {
+        // Create backup directories if they don't exist
+        if (!fs.existsSync(BACKUP_DIR)) {
+            fs.mkdirSync(BACKUP_DIR, { recursive: true });
+        }
+        if (!fs.existsSync(BACKUP_IMAGES_DIR)) {
+            fs.mkdirSync(BACKUP_IMAGES_DIR, { recursive: true });
+        }
 
+        // Backup tweet data to JSON (for redundancy)
+        let tweets = [];
+        if (fs.existsSync(BACKUP_TWEETS_FILE)) {
+            const data = fs.readFileSync(BACKUP_TWEETS_FILE, 'utf8');
+            tweets = JSON.parse(data);
+        }
 
-export async function generateDetailZoomText(artwork) {
-   if (!model) return null;
+        tweets.push({
+            timestamp: new Date().toISOString(),
+            artwork,
+            tweetText
+        });
 
-   const prompt = `
-    Write a short tweet (max 200 chars) encouraging people to look closer at the details of "${artwork.title}".
-    Focus on brushwork, lighting, or hidden details.
-    
-    Output ONLY the text.
-    `;
+        fs.writeFileSync(BACKUP_TWEETS_FILE, JSON.stringify(tweets, null, 2));
 
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Detail Zoom Error:", error);
-      return null;
-   }
+        // Backup image
+        const timestamp = Date.now();
+        const imagePath = path.join(BACKUP_IMAGES_DIR, `${timestamp}.jpg`);
+        fs.writeFileSync(imagePath, imageBuffer);
+
+        console.log("💾 Backup saved");
+    } catch (error) {
+        console.error("❌ Backup failed:", error.message);
+    }
 }
 
+export function generateReport() {
+    const analytics = getAnalytics();
+    const totalBytes = getTotalImageSize();
+    const totalMB = (totalBytes / (1024 * 1024)).toFixed(2);
+    const totalGB = (totalBytes / (1024 * 1024 * 1024)).toFixed(4);
 
+    console.log("\n" + "=".repeat(50));
+    console.log("📊 ANALYTICS LEADERBOARD & REPORT");
+    console.log("=".repeat(50));
 
-// --- Forgotten Artists Spotlight ---
+    console.log(`\n📈 Total Tweets Posted: ${analytics.totalTweets}`);
+    console.log(`💾 Total Storage Used: ${totalMB} MB (${totalGB} GB)`);
 
-export async function generateForgottenArtistSpotlight(artist, artwork) {
-   if (!model) return null;
+    // Top 5 Artists
+    if (analytics.topArtists && analytics.topArtists.length > 0) {
+        console.log("\n🏆 TOP 5 ARTISTS:");
+        analytics.topArtists.forEach((artist, index) => {
+            const medal = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "  ";
+            console.log(`  ${medal} ${artist.name}: ${artist.tweet_count} tweets`);
+        });
+    }
 
-   const lifespan = artist.death_year
-      ? `${artist.birth_year}-${artist.death_year}`
-      : `born ${artist.birth_year}`;
+    // Museum Distribution
+    if (analytics.museums && analytics.museums.length > 0) {
+        console.log("\n🏛️ MUSEUM DISTRIBUTION:");
+        analytics.museums.forEach(museum => {
+            const percentage = ((museum.tweet_count / analytics.totalTweets) * 100).toFixed(1);
+            console.log(`  - ${museum.name}: ${museum.tweet_count} tweets (${percentage}%)`);
+        });
+    }
 
-   const prompt = `
-    You are writing a powerful, SEO-optimized spotlight on an underrepresented artist.
-    
-    Artist: ${artist.name} (${lifespan})
-    Identity: ${artist.gender}, ${artist.ethnicity}
-    Nationality: ${artist.nationality}
-    Movement: ${artist.movement}
-    Artwork: "${artwork.title}" ${artwork.date ? `(${artwork.date})` : ''}
-    
-    Why they're underrepresented: ${artist.why_forgotten}
-    
-    Write a comprehensive social media post (up to 20,000 characters) that:
-    
-    1. **Opening Hook**: Start with a powerful question or statement about representation in art
-       Example: "Why don't we know ${artist.name}'s name as well as Picasso's?"
-    
-    2. **Artist's Story**: Tell their compelling biography
-       - Early life and barriers they faced
-       - How they overcame discrimination (race, gender, etc.)
-       - Their artistic journey and breakthrough moments
-    
-    3. **Artistic Contributions**: Analyze their unique style and innovations
-       - What made their work groundbreaking
-       - How they influenced art history
-       - Specific techniques or themes they pioneered
-    
-    4. **This Artwork**: Deep analysis of "${artwork.title}"
-       - Visual description
-       - Symbolism and meaning
-       - Why it's significant in their body of work
-    
-    5. **Historical Context**: The barriers they faced
-       - Systemic discrimination in the art world
-       - How they overcame discrimination (race, gender, etc.)
-       - Contemporary artists who faced similar challenges
-    
-    6. **Legacy & Modern Relevance**: Why they matter today
-       - How they paved the way for diverse artists
-       - Recent recognition or exhibitions
-       - What we can learn from their story
-    
-    7. **Call to Action**: Encourage learning more
-       - Where to see their work (museums: ${artist.museums.join(', ')})
-       - Invite discussion about diversity in art
-    
-    8. **SEO Keywords** (naturally integrate):
-       - "${artist.name}"
-       - "underrepresented artists"
-       - "diversity in art"
-       - "${artist.ethnicity} artists"
-       - "${artist.gender} artists in history"
-       - "${artist.movement}"
-    
-    9. **Hashtags** (10-12):
-       - Broad: #ArtHistory #DiversityInArt #RepresentationMatters
-       - Specific: #${artist.name.replace(/\s+/g, '')} #${artist.ethnicity.replace(/\s+/g, '')}Artists
-       - Movement: #${artist.movement.replace(/\s+/g, '')}
-       - Engagement: #ForgottenArtists #ArtEducation #MuseumCollection
-    
-    **Tone**: Respectful, empowering, educational, and passionate. Celebrate their achievements while acknowledging injustice.
-    
-    **Language**: English
-    
-    Output ONLY the post text with proper formatting.
-    `;
+    // Day of Week Analysis
+    if (analytics.mostActiveDay) {
+        console.log(`\n📅 MOST ACTIVE DAY: ${analytics.mostActiveDay.day} (${analytics.mostActiveDay.count} tweets)`);
+    }
 
-   try {
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      return response.text().trim();
-   } catch (error) {
-      console.error("❌ Gemini Spotlight Error:", error);
-      return null;
-   }
+    // Average tweet length
+    console.log(`\n📏 AVERAGE TWEET LENGTH: ${analytics.avgLength} characters`);
+
+    // Color Analysis
+    const colorStats = getColorStats();
+    if (colorStats && colorStats.topColors.length > 0) {
+        console.log("\n🎨 COLOR PALETTE OF THE MONTH:");
+        colorStats.topColors.forEach(c => {
+            console.log(`  - ${c.color}: ${c.percentage}%`);
+        });
+        console.log(`  ✨ Dominant Mood: ${colorStats.dominantMood}`);
+    }
+
+    console.log("\n" + "=".repeat(50) + "\n");
 }
 
+// --- Color Analysis Helpers ---
 
+import sharp from 'sharp';
+
+export async function extractDominantColor(imageBuffer) {
+    try {
+        const stats = await sharp(imageBuffer).stats();
+        const { r, g, b } = stats.channels.map(c => c.mean);
+        return getColorName(r, g, b);
+    } catch (e) {
+        return null;
+    }
+}
+
+function getColorName(r, g, b) {
+    // Simple Euclidean distance to nearest named color
+    const colors = {
+        'Red': [255, 0, 0],
+        'Green': [0, 255, 0],
+        'Blue': [0, 0, 255],
+        'Yellow': [255, 255, 0],
+        'Cyan': [0, 255, 255],
+        'Magenta': [255, 0, 255],
+        'White': [255, 255, 255],
+        'Black': [0, 0, 0],
+        'Gray': [128, 128, 128],
+        'Orange': [255, 165, 0],
+        'Purple': [128, 0, 128],
+        'Brown': [165, 42, 42],
+        'Gold': [255, 215, 0],
+        'Beige': [245, 245, 220]
+    };
+
+    let minDist = Infinity;
+    let closest = 'Unknown';
+
+    for (const [name, rgb] of Object.entries(colors)) {
+        const dist = Math.sqrt(
+            Math.pow(r - rgb[0], 2) +
+            Math.pow(g - rgb[1], 2) +
+            Math.pow(b - rgb[2], 2)
+        );
+        if (dist < minDist) {
+            minDist = dist;
+            closest = name;
+        }
+    }
+    return closest;
+}
