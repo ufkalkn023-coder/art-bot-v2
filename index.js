@@ -191,18 +191,8 @@ async function runBot() {
         // Add Creative Concepts to Rotation
         const features = selectOptionalFeatures(baseTweetText, artwork, movementTheme);
 
-        // 10% chance for Cinema Crossover
-        if (Math.random() < 0.10) {
-            const { generateCinemaCrossover } = await import('./src/services/geminiService.js');
-            const cinemaText = await generateCinemaCrossover(artwork);
-            if (cinemaText) {
-                features.finalText += `\n\n${cinemaText}`;
-                features.usedFeatures.push('cinema_crossover');
-            }
-        }
-
         // 10% chance for Time Capsule
-        if (Math.random() < 0.10 && !features.usedFeatures.includes('cinema_crossover')) {
+        if (Math.random() < 0.10) {
             const { generateTimeCapsule } = await import('./src/services/geminiService.js');
             const capsuleText = await generateTimeCapsule(artwork);
             if (capsuleText) {
@@ -212,7 +202,7 @@ async function runBot() {
         }
 
         // 10% chance for Detail Zoom (Phase 2)
-        if (Math.random() < 0.10 && !features.usedFeatures.includes('cinema_crossover') && !features.usedFeatures.includes('time_capsule')) {
+        if (Math.random() < 0.10 && !features.usedFeatures.includes('time_capsule')) {
             const { createDetailCrop } = await import('./src/services/imageService.js');
             const { generateDetailZoomText } = await import('./src/services/geminiService.js');
 
